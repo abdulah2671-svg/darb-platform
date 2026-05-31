@@ -881,6 +881,7 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 
     // --- Section 3: Career Library ---
     const libraryItems = [
+        { title: 'CCNA Part 1 Free', category: 'Technical-Category', description: 'ملف PDF تعليمي لأساسيات CCNA - الجزء الأول.', url: 'files/ccna-part-1-free.pdf', type: 'pdf' },
         { title: 'دليل خوارزمية لينكدإن لعام 2024', category: 'Career-Category', description: 'ملف PDF يشرح آلية تحسين الظهور والتفاعل على LinkedIn وفق خوارزمية 2024.', url: 'files/linkedin-algorithm-guide-2024.pdf', type: 'pdf' }
     ];
     const influencerItems = [
