@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة درب</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css?v=13">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-card">
+                    <img src="assets/darb-logo.png?v=3" alt="Darb Logo" class="brand-logo">
+                    <div class="brand-identity">
+                        <span class="brand-title">منصة درب</span>
+                        <span class="brand-subtitle">مساعدك المهني الذكي</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-section">
+                <span class="nav-label">الخدمات الأساسية</span>
+                <nav class="nav-menu">
+                    <button class="nav-item active" data-target="cv-engineer">
+                        <i class="fa-solid fa-file-signature"></i>
+                        <span>مُهندس السيرة الذاتية</span>
+                    </button>
+                    <button class="nav-item" data-target="interview-coach">
+                        <i class="fa-solid fa-comments"></i>
+                        <span>مُدرب المقابلات</span>
+                    </button>
+                    <button class="nav-item" data-target="company-intelligence">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>مُحلل الشركات</span>
+                    </button>
+                    <button class="nav-item" data-target="career-library">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>المكتبة المهنية</span>
+                    </button>
+                </nav>
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-title">
+                    <h1 id="page-title">مرحباً بكم في منصة درب</h1>
+                    <p id="page-desc" class="text-muted">قم بتخصيص سيرتك الذاتية لتتطابق مع متطلبات الوظيفة بدقة عالية</p>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <!-- Section 1: CV Engineer -->
+                <section id="cv-engineer" class="app-section active-section fade-in">
+                    <div class="grid-2">
+                        <!-- Input Side -->
+                        <div class="card panel-input">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-pen-nib text-primary"></i> المدخلات</h3>
+                                <span class="badge badge-primary">خطوة 1</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="target-job-title">المسمى الوظيفي المستهدف</label>
+                                    <div class="input-icon-wrapper">
+                                        <i class="fa-solid fa-id-badge input-icon"></i>
+                                        <input type="text" id="target-job-title" class="form-control" placeholder="مثال: محلل بيانات، مطور واجهات، أخصائي موارد بشرية">
+                                    </div>
+                                </div>
+                                <div class="form-group user-survey">
+                                    <label>استبيان معلومات المستخدم لإضافتها في السيرة</label>
+                                    <div class="survey-language-toggle" role="group" aria-label="اختيار لغة الاستبيان">
+                                        <button type="button" class="survey-lang-btn active" data-survey-lang="en">English</button>
+                                        <button type="button" class="survey-lang-btn" data-survey-lang="ar">عربي</button>
+                                    </div>
+                                    <div class="survey-grid">
+                                        <input type="text" id="user-full-name" class="form-control" placeholder="الاسم الكامل">
+                                        <input type="email" id="user-email" class="form-control" placeholder="البريد الإلكتروني">
+                                        <input type="tel" id="user-phone" class="form-control" placeholder="رقم الجوال">
+                                        <input type="text" id="user-region" class="form-control" placeholder="المنطقة / المدينة">
+                                        <input type="text" id="user-college" class="form-control" placeholder="اسم الكلية أو الجامعة">
+                                        <input type="text" id="user-major" class="form-control" placeholder="التخصص">
+                                        <input type="text" id="user-gpa" class="form-control" placeholder="المعدل GPA">
+                                        <input type="url" id="user-linkedin" class="form-control" placeholder="حساب LinkedIn">
+                                    </div>
+                                    <div class="textarea-wrapper mt-3">
+                                        <textarea id="cv-career-objective" placeholder="Career Objective - الهدف الوظيفي الذي تريد إضافته أو تحسينه"></textarea>
+                                    </div>
+                                    <div class="textarea-wrapper mt-3">
+                                        <textarea id="cv-education" placeholder="Education - التعليم، الكلية، التخصص، المعدل، سنة التخرج"></textarea>
+                                    </div>
+                                    <div class="textarea-wrapper mt-3">
+                                        <textarea id="user-experience" placeholder="Experiences - الخبرات العملية أو التدريبية، كل خبرة في سطر مستقل"></textarea>
+                                    </div>
+                                    <div class="textarea-wrapper mt-3">
+                                        <textarea id="user-courses" placeholder="Courses - الدورات والشهادات، كل دورة في سطر مستقل"></textarea>
+                                    </div>
+                                    <div class="textarea-wrapper mt-3">
+                                        <textarea id="user-skills" placeholder="Skills - المهارات التقنية والشخصية، كل مهارة في سطر مستقل"></textarea>
+                                    </div>
+                                    <div class="textarea-wrapper mt-3">
+                                        <textarea id="cv-languages" placeholder="Languages - اللغات مثل: Arabic: Native / English: Intermediate"></textarea>
+                                    </div>
+                                    <div class="textarea-wrapper mt-3">
+                                        <textarea id="cv-reference" placeholder="Reference - المراجع، مثال: Available upon request أو اسم المرجع وبياناته"></textarea>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-block btn-lg mt-4 shadow-sm group" id="generate-cv-btn">
+                                    <span class="btn-text">تحسين ملف السيرة بالخوارزمية</span>
+                                    <i class="fa-solid fa-wand-magic-sparkles group-hover-animate"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Output Side -->
+                        <div class="card panel-output">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-check-double text-success"></i> المخرجات</h3>
+                                <span class="badge badge-success">النتائج</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>السيرة الذاتية المحسّنة</label>
+                                    <div class="textarea-wrapper read-only">
+                                        <textarea readonly id="improved-cv-output" class="border-success-subtle" placeholder="النتيجة النهائية ستظهر هنا..."></textarea>
+                                        <div id="resume-template-preview" class="resume-template-preview"></div>
+                                        <button class="btn btn-sm btn-outline copy-btn" data-target="improved-cv-output"><i class="fa-regular fa-copy"></i> نسخ</button>
+                                    </div>
+                                    <button class="btn btn-success btn-block mt-3" id="download-cv-btn" disabled>
+                                        <i class="fa-solid fa-file-arrow-down"></i>
+                                        تحميل الملف المحسّن
+                                    </button>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <label>تحليل والتوافق مع أنظمة (ATS)</label>
+                                    <div class="textarea-wrapper read-only">
+                                        <textarea readonly id="ats-feedback" class="border-warning-subtle" placeholder="تقرير مفصل عن الكلمات المفتاحية وأسباب التعديل سيعرض هنا..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Interview Coach -->
+                <section id="interview-coach" class="app-section fade-in">
+                    <div class="chat-layout card">
+                        <div class="chat-container">
+                            <div class="chat-header">
+                                <div class="interviewer-profile">
+                                    <div class="avatar-lg bg-primary-light text-primary">
+                                        <i class="fa-solid fa-user-tie"></i>
+                                    </div>
+                                    <div class="interviewer-details">
+                                        <h3 class="m-0">مدير التوظيف الافتراضي</h3>
+                                        <div class="status-indicator">
+                                            <span class="dot online"></span>
+                                            <span class="status-text m-0 text-sm">مستعد للمقابلة</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chat-actions">
+                                    <button class="btn btn-primary shadow-sm" id="start-interview-btn">
+                                        <i class="fa-solid fa-play"></i> ابدأ المقابلة
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="chat-window" id="chat-messages">
+                                <div class="empty-state">
+                                    <div class="empty-icon"><i class="fa-regular fa-comments"></i></div>
+                                    <h4>مستعدون للبدء؟</h4>
+                                    <p>اضغط على "ابدأ المقابلة" لمشاهدة محاكاة مقابلة واقعية بين مسؤولة توظيف ومرشح لوظائف الدعم الفني والشبكات.</p>
+                                </div>
+                            </div>
+
+                            <div class="chat-input-wrapper">
+                                <div class="chat-input-inner">
+                                    <textarea id="chat-textarea" placeholder="سيناريو مشاهدة فقط - لا تحتاج إلى كتابة إجابة" rows="1" disabled></textarea>
+                                    <button class="btn btn-primary btn-icon rounded-circle" id="send-msg-btn" disabled style="display: none;">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                                <div class="chat-hints">
+                                    <span><i class="fa-regular fa-lightbulb"></i> شاهد طريقة بناء الإجابة الواقعية ثم تدرب عليها بصوتك</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Panel for Feedback/Evaluation -->
+                        <div class="evaluation-panel bg-light">
+                            <div class="panel-heading">
+                                <h3><i class="fa-solid fa-chart-line text-primary"></i> تقييم الأداء</h3>
+                                <p class="text-sm text-muted">يعرض النظام محاكاة مقابلة مهنية لوظائف الشبكات والدعم الفني بهدف ملاحظة طريقة بناء الإجابة وتنظيمها.</p>
+                            </div>
+                            
+                            <button class="btn btn-success btn-block mt-3 mb-4 shadow-sm" id="get-evaluation-btn" disabled>
+                                <i class="fa-solid fa-star"></i> احصل على التقييم النهائي
+                            </button>
+
+                            <div id="evaluation-results" class="eval-results-hidden">
+                                <div class="score-card mb-4">
+                                    <div class="score-circle">
+                                        <svg viewBox="0 0 36 36" class="circular-chart green">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <path class="circle" stroke-dasharray="85, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <text x="18" y="20.35" class="percentage">8.5</text>
+                                        </svg>
+                                    </div>
+                                    <div class="score-info">
+                                        <h4>ممتاز!</h4>
+                                        <p class="text-sm text-muted">مستوى الإجابات جيد جدًا مقارنة بمتطلبات المقابلة.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feedback-list">
+                                    <div class="feedback-item success">
+                                        <div class="fi-icon"><i class="fa-solid fa-check"></i></div>
+                                        <div class="fi-content">
+                                            <h5>نقاط القوة</h5>
+                                            <p>ثقة عالية في الحديث، استخدام أمثلة واقعية ومحددة.</p>
+                                        </div>
+                                    </div>
+                                    <div class="feedback-item warning mt-3">
+                                        <div class="fi-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                        <div class="fi-content">
+                                            <h5>نقاط للتحسين</h5>
+                                            <p>احرص على استخدام هيكل أكثر وضوحًا مثل STAR عند الإجابة.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Company Intelligence -->
+                <section id="company-intelligence" class="app-section fade-in">
+                    <div class="intelligence-layout">
+                        <div class="intelligence-header text-center">
+                            <div class="icon-hero"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                            <h2>حلّل الشركة قبل المقابلة</h2>
+                            <p class="text-muted max-w-md mx-auto mt-2">احصل على ملخص تحضيري منظم حول طبيعة الشركة، متطلبات الدور، الأسئلة المتوقعة، والمهارات التي يُنصح بإبرازها أثناء المقابلة.</p>
+                        </div>
+
+                        <div class="card max-w-lg mx-auto search-card mt-5 shadow-lg">
+                            <div class="card-body p-4">
+                                <div class="form-group">
+                                    <label for="company-name">اسم الشركة المستهدفة</label>
+                                    <div class="input-icon-wrapper">
+                                        <i class="fa-regular fa-building input-icon"></i>
+                                        <input type="text" id="company-name" class="form-control" list="company-report-options" placeholder="اختر اسم الشركة">
+                                        <datalist id="company-report-options">
+                                            <option value="STC"></option>
+                                            <option value="تحكم"></option>
+                                            <option value="سدايا"></option>
+                                            <option value="سيسكو"></option>
+                                            <option value="علم"></option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-block btn-lg mt-3 shadow-sm group" id="get-report-btn">
+                                    <span class="btn-text">تحميل ملف الشركة</span>
+                                    <i class="fa-solid fa-file-arrow-down group-hover-animate"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Section 4: Career Library -->
+                <section id="career-library" class="app-section fade-in">
+                    <div class="library-layout">
+                        <div class="intelligence-header text-center">
+                            <div class="icon-hero"><i class="fa-solid fa-book-open-reader"></i></div>
+                            <h2>المكتبة المهنية</h2>
+                            <p class="text-muted max-w-md mx-auto mt-2">ملفات مختارة لدعم تخصصات الشبكات والدعم الفني والاستعداد المهني.</p>
+                        </div>
+
+                        <div class="library-filters">
+                            <button class="btn btn-primary library-filter active" data-category="all">الكل</button>
+                            <button class="btn btn-outline library-filter" data-category="Technical-Category">Technical-Category</button>
+                            <button class="btn btn-outline library-filter" data-category="Career-Category">Career-Category</button>
+                            <button class="btn btn-outline library-filter" data-category="Influencers">المؤثرين في المجال</button>
+                        </div>
+
+                        <div id="library-grid" class="library-grid"></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
+    <script src="script.js?v=16"></script>
+</body>
+</html>
