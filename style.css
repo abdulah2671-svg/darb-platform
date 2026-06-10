@@ -843,8 +843,18 @@ textarea:focus, .form-control:focus {
 .jp-body p {
     font-size: 13px;
     color: var(--text-muted);
-    margin: 0;
+    margin: 0 0 5px;
     line-height: 1.5;
+}
+.jp-url {
+    font-size: 11px;
+    color: var(--brand-gold);
+    direction: ltr;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 0.85;
 }
 .jp-arrow {
     color: var(--brand-gold);

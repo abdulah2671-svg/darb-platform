@@ -1085,6 +1085,7 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
                         <span class="jp-tag">${p.tag}</span>
                     </div>
                     <p>${p.desc}</p>
+                    <span class="jp-url">${p.url}</span>
                 </div>
                 <div class="jp-arrow"><i class="fa-solid fa-arrow-left"></i></div>
             </a>
