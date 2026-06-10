@@ -14,6 +14,30 @@ document.addEventListener('DOMContentLoaded', () => {
         'job-platforms': { title: 'منصات توظيف', desc: 'اضغط على أي منصة للانتقال إليها مباشرةً' }
     };
 
+    // --- Mobile Sidebar Toggle ---
+    const sidebar = document.querySelector('.sidebar');
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    function openSidebar() {
+        sidebar.classList.add('open');
+        sidebarOverlay.classList.add('open');
+        hamburgerBtn.querySelector('i').className = 'fa-solid fa-xmark';
+    }
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('open');
+        hamburgerBtn.querySelector('i').className = 'fa-solid fa-bars';
+    }
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+            sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+        });
+    }
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', closeSidebar);
+    }
+
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             const targetId = item.getAttribute('data-target');
@@ -35,6 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 pageTitle.textContent = pageInfo[targetId].title;
                 pageDesc.textContent = pageInfo[targetId].desc;
             }
+
+            // Close sidebar on mobile after selection
+            if (window.innerWidth <= 768) closeSidebar();
         });
     });
 

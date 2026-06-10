@@ -908,10 +908,138 @@ textarea:focus, .form-control:focus {
 .toast.error .toast-icon { color: #ef4444; }
 @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Responsive adjustments */
+/* =============================================
+   RESPONSIVE — Full Mobile / Tablet Support
+   ============================================= */
+
+/* Hamburger button — hidden on desktop */
+.hamburger-btn {
+    display: none;
+    flex-shrink: 0;
+}
+
+/* Sidebar overlay — hidden on desktop */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 17, 17, 0.45);
+    z-index: 99;
+    backdrop-filter: blur(2px);
+}
+
+/* ---- Tablet (≤ 1024px) ---- */
 @media (max-width: 1024px) {
-    .grid-2, .chat-layout, .form-row { grid-template-columns: 1fr; flex-direction: column; }
-    .chat-layout { min-height: auto; }
-    .chat-container { border-left: none; border-bottom: 1px solid var(--border-color); height: 500px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .chat-layout { flex-direction: column; min-height: auto; }
+    .chat-container { border-left: none; border-bottom: 1px solid var(--border-color); height: 400px; }
+    .form-row { flex-direction: column; }
     .brand-logo { width: 170px; }
+    .content-wrapper { padding: 24px 28px; }
+    .topbar { padding: 16px 24px; }
+    .job-platforms-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+}
+
+/* ---- Mobile (≤ 768px) ---- */
+@media (max-width: 768px) {
+
+    body { overflow: hidden; }
+
+    /* Layout */
+    .app-container { flex-direction: column; height: 100dvh; overflow: hidden; }
+
+    /* Sidebar becomes a drawer */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 280px;
+        height: 100%;
+        z-index: 100;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+    }
+    .sidebar.open {
+        right: 0;
+        box-shadow: -8px 0 32px rgba(17, 17, 17, 0.18);
+    }
+    .sidebar-overlay.open {
+        display: block;
+    }
+
+    /* Show hamburger */
+    .hamburger-btn { display: flex; }
+
+    /* Main content takes full width */
+    .main-content { width: 100%; flex: 1; overflow-y: auto; }
+
+    /* Topbar */
+    .topbar { padding: 12px 16px; gap: 10px; }
+    .topbar-title h1 { font-size: 17px; min-height: unset; padding: 10px 14px; border-radius: 14px; }
+    .topbar-title p { font-size: 12px; }
+
+    /* Content wrapper */
+    .content-wrapper { padding: 16px; }
+
+    /* Brand card */
+    .brand { padding: 16px 12px; }
+    .brand-logo { width: 140px; }
+    .brand-title { font-size: 18px; }
+
+    /* Nav */
+    .nav-section { padding: 16px 12px; }
+    .nav-item { font-size: 15px; padding: 12px 14px; }
+
+    /* Cards */
+    .grid-2 { grid-template-columns: 1fr; gap: 16px; }
+    .card-body { padding: 16px; }
+    .card-header { padding: 14px 16px; }
+
+    /* CV section */
+    .form-row { flex-direction: column; }
+    .survey-grid { grid-template-columns: 1fr; }
+
+    /* Chat */
+    .chat-layout { flex-direction: column; min-height: auto; }
+    .chat-container { border-left: none; border-bottom: 1px solid var(--border-color); height: 320px; }
+    .evaluation-panel { padding: 16px; }
+
+    /* Library */
+    .library-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .library-filters { gap: 8px; }
+    .library-filters .btn { font-size: 13px; padding: 8px 12px; }
+
+    /* Job platforms */
+    .job-platforms-grid { grid-template-columns: 1fr; gap: 10px; }
+    .job-platform-card { padding: 14px 16px; }
+
+    /* Golden tips images */
+    #golden-tips-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    .golden-tip-image-card.expanded { grid-column: span 2; }
+
+    /* Intelligence header */
+    .intelligence-header { margin-bottom: 24px; }
+    .icon-hero { font-size: 36px; }
+
+    /* Company section */
+    .company-form .form-group { margin-bottom: 12px; }
+
+    /* Influencer cards */
+    .influencer-photo { width: 90px; height: 90px; }
+
+    /* Library section title */
+    .library-section-title h3 { font-size: 18px; }
+
+    /* Buttons */
+    .btn-lg { padding: 12px 20px; font-size: 15px; }
+}
+
+/* ---- Small Mobile (≤ 400px) ---- */
+@media (max-width: 400px) {
+    .topbar-title h1 { font-size: 15px; padding: 8px 12px; }
+    .library-grid { grid-template-columns: 1fr 1fr; }
+    #golden-tips-grid { grid-template-columns: 1fr 1fr; }
+    .job-platforms-grid { grid-template-columns: 1fr; }
+    .content-wrapper { padding: 12px; }
+    .nav-item { font-size: 14px; }
 }
