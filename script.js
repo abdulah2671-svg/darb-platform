@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'cv-engineer': { title: 'مرحباً بكم في منصة درب', desc: 'قم بتخصيص سيرتك الذاتية لتتطابق مع متطلبات الوظيفة بدقة عالية' },
         'interview-coach': { title: 'مُدرب المقابلات (Interview Coach)', desc: 'شاهد محاكاة مقابلة مهنية تساعدك على فهم أسلوب الإجابة المنظم' },
         'company-intelligence': { title: 'مُحلل الشركات (Company Analyzer)', desc: 'احصل على ملخص تحضيري موضوعي حول الشركة والدور المستهدف' },
-        'career-library': { title: 'المكتبة المهنية (Career Library)', desc: 'حمّل ملفات تقنية ومهنية مختارة لدعم جاهزيتك الوظيفية' }
+        'career-library': { title: 'المكتبة المهنية (Career Library)', desc: 'حمّل ملفات تقنية ومهنية مختارة لدعم جاهزيتك الوظيفية' },
+        'golden-tips': { title: 'نصائح ذهبية', desc: 'نصائح عملية مختارة لمساعدتك في مسيرتك المهنية' }
     };
 
     navItems.forEach(item => {
@@ -947,10 +948,8 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 
     function renderLibraryItems(category = 'all') {
         if (!libraryGrid) return;
-        const isGolden = category === 'GoldenTips';
-        const filteredItems = (category === 'all' || isGolden) ? (isGolden ? [] : libraryItems) : category === 'Influencers' ? [] : libraryItems.filter(item => item.category === category);
+        const filteredItems = category === 'all' ? libraryItems : category === 'Influencers' ? [] : libraryItems.filter(item => item.category === category);
         const filteredInfluencers = category === 'all' || category === 'Influencers' ? influencerItems : [];
-        const filteredTips = category === 'all' || isGolden ? goldenTips : [];
         const libraryCards = filteredItems.map(item => `
             <article class="library-card">
                 ${item.type === 'pdf' ? `
@@ -991,25 +990,24 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
                 </article>
             `).join('')}
         ` : '';
-        const tipsSection = filteredTips.length ? `
-            <div class="library-section-title golden-tips-header">
-                <h3><i class="fa-solid fa-star"></i> نصائح ذهبية</h3>
-                <p>نصائح عملية مختارة لمساعدتك في مسيرتك المهنية.</p>
-            </div>
-            ${filteredTips.map(tip => `
-                <article class="library-card golden-tip-card">
-                    <div class="golden-tip-icon">
-                        <i class="fa-solid ${escapeHtml(tip.icon)}"></i>
-                    </div>
-                    <div class="library-card-body">
-                        <h3>${escapeHtml(tip.title)}</h3>
-                        <p>${escapeHtml(tip.body)}</p>
-                    </div>
-                </article>
-            `).join('')}
-        ` : '';
-        libraryGrid.innerHTML = `${libraryCards}${influencerCards}${tipsSection}`;
+        libraryGrid.innerHTML = `${libraryCards}${influencerCards}`;
         renderPdfPreviews();
+    }
+
+    function renderGoldenTips() {
+        const grid = document.getElementById('golden-tips-grid');
+        if (!grid) return;
+        grid.innerHTML = goldenTips.map(tip => `
+            <article class="library-card golden-tip-card">
+                <div class="golden-tip-icon">
+                    <i class="fa-solid ${escapeHtml(tip.icon)}"></i>
+                </div>
+                <div class="library-card-body">
+                    <h3>${escapeHtml(tip.title)}</h3>
+                    <p>${escapeHtml(tip.body)}</p>
+                </div>
+            </article>
+        `).join('');
     }
 
     function renderPdfPreviews() {
@@ -1058,6 +1056,8 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
         'سيسكو': { title: 'سيسكو', url: 'files/company-reports/تقرير_سيسكو.pdf' },
         'علم': { title: 'علم', url: 'files/company-reports/تقرير_شركة_علم_درب.pdf' }
     };
+
+    renderGoldenTips();
 
     if(getReportBtn) {
         getReportBtn.addEventListener('click', () => {

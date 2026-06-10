@@ -681,6 +681,7 @@ textarea:focus, .form-control:focus {
 /* Company Intelligence */
 .intelligence-header { margin-bottom: 40px; }
 .icon-hero { font-size: 48px; color: var(--accent); margin-bottom: 16px; }
+.golden-icon-hero { color: var(--brand-gold); }
 
 .form-row { display: flex; gap: 16px; }
 .flex-1 { flex: 1; }

@@ -11,7 +11,7 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=19">
+    <link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
     <div class="app-container">
@@ -45,6 +45,10 @@
                     <button class="nav-item" data-target="career-library">
                         <i class="fa-solid fa-book-open"></i>
                         <span>المكتبة المهنية</span>
+                    </button>
+                    <button class="nav-item" data-target="golden-tips">
+                        <i class="fa-solid fa-star"></i>
+                        <span>نصائح ذهبية</span>
                     </button>
                 </nav>
             </div>
@@ -280,6 +284,18 @@
                     </div>
                 </section>
 
+                <!-- Section 5: Golden Tips -->
+                <section id="golden-tips" class="app-section">
+                    <div class="library-layout">
+                        <div class="intelligence-header text-center">
+                            <div class="icon-hero golden-icon-hero"><i class="fa-solid fa-star"></i></div>
+                            <h2>نصائح ذهبية</h2>
+                            <p class="text-muted max-w-md mx-auto mt-2">نصائح عملية مختارة لمساعدتك في مسيرتك المهنية.</p>
+                        </div>
+                        <div id="golden-tips-grid" class="library-grid"></div>
+                    </div>
+                </section>
+
                 <!-- Section 4: Career Library -->
                 <section id="career-library" class="app-section fade-in">
                     <div class="library-layout">
@@ -294,7 +310,6 @@
                             <button class="btn btn-outline library-filter" data-category="Technical-Category">Technical-Category</button>
                             <button class="btn btn-outline library-filter" data-category="Career-Category">Career-Category</button>
                             <button class="btn btn-outline library-filter" data-category="Influencers">المؤثرين في المجال</button>
-                            <button class="btn btn-outline library-filter" data-category="GoldenTips">نصائح ذهبية</button>
                         </div>
 
                         <div id="library-grid" class="library-grid"></div>
@@ -311,6 +326,6 @@
     <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
-    <script src="script.js?v=19"></script>
+    <script src="script.js?v=20"></script>
 </body>
 </html>
