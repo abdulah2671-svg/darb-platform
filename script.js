@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'interview-coach': { title: 'مُدرب المقابلات (Interview Coach)', desc: 'شاهد محاكاة مقابلة مهنية تساعدك على فهم أسلوب الإجابة المنظم' },
         'company-intelligence': { title: 'مُحلل الشركات (Company Analyzer)', desc: 'احصل على ملخص تحضيري موضوعي حول الشركة والدور المستهدف' },
         'career-library': { title: 'المكتبة المهنية (Career Library)', desc: 'حمّل ملفات تقنية ومهنية مختارة لدعم جاهزيتك الوظيفية' },
-        'golden-tips': { title: 'نصائح ذهبية', desc: 'نصائح عملية مختارة لمساعدتك في مسيرتك المهنية' }
+        'golden-tips': { title: 'نصائح ذهبية', desc: 'نصائح عملية مختارة لمساعدتك في مسيرتك المهنية' },
+        'job-platforms': { title: 'منصات توظيف', desc: 'اضغط على أي منصة للانتقال إليها مباشرةً' }
     };
 
     navItems.forEach(item => {
@@ -1054,6 +1055,43 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
     };
 
     renderGoldenTips();
+
+    // --- Job Platforms ---
+    const jobPlatforms = [
+        { name: 'LinkedIn', nameAr: 'لينكدإن', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg', desc: 'المنصة الأولى عالمياً للتوظيف المهني والشبكات.', url: 'https://www.linkedin.com/jobs/', tag: 'عالمية', color: '#0077b5' },
+        { name: 'Jadarat', nameAr: 'جدارات', logo: 'https://jadarat.sa/static/media/jadarat-logo.png', desc: 'البوابة الوطنية للتوظيف في المملكة العربية السعودية.', url: 'https://jadarat.sa/', tag: 'سعودية', color: '#1e5c9b' },
+        { name: 'Bayt', nameAr: 'بيت.كوم', logo: 'https://www.bayt.com/favicon-32x32.png', desc: 'من أكبر مواقع التوظيف في منطقة الشرق الأوسط.', url: 'https://www.bayt.com/', tag: 'خليجية', color: '#e55a23' },
+        { name: 'Naukrigulf', nameAr: 'نوكري الخليج', logo: 'https://www.naukrigulf.com/favicon.ico', desc: 'منصة توظيف متخصصة في دول الخليج العربي.', url: 'https://www.naukrigulf.com/', tag: 'خليجية', color: '#2d6cb4' },
+        { name: 'Indeed', nameAr: 'إنديد', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Indeed_logo.svg', desc: 'محرك بحث وظيفي ضخم يجمع إعلانات من آلاف المواقع.', url: 'https://sa.indeed.com/', tag: 'عالمية', color: '#003A9B' },
+        { name: 'Glassdoor', nameAr: 'جلاسدور', logo: 'https://www.glassdoor.com/favicon.ico', desc: 'وظائف + تقييمات الشركات والرواتب من الموظفين.', url: 'https://www.glassdoor.com/', tag: 'عالمية', color: '#0CAA41' },
+        { name: 'Hiredly', nameAr: 'هايرد لي', logo: 'https://cdn.worldvectorlogo.com/logos/wobb.svg', desc: 'منصة توظيف للخريجين الجدد وأصحاب الخبرات المتوسطة.', url: 'https://www.hiredly.com/', tag: 'عالمية', color: '#6c63ff' },
+        { name: 'Tanqeeb', nameAr: 'تنقيب', logo: 'https://tanqeeb.com/favicon.ico', desc: 'منصة عربية للتوظيف تغطي السوق السعودي والخليجي.', url: 'https://tanqeeb.com/', tag: 'سعودية', color: '#d4741a' },
+        { name: 'Gulftalent', nameAr: 'غلف تالنت', logo: 'https://www.gulftalent.com/favicon.ico', desc: 'منصة وظائف متخصصة للمهنيين في منطقة الخليج.', url: 'https://www.gulftalent.com/', tag: 'خليجية', color: '#1d4e89' },
+        { name: 'Sabbar', nameAr: 'صبّار', logo: 'https://sabbar.com/favicon.ico', desc: 'منصة سعودية للوظائف بالساعة والدوام الجزئي والكامل.', url: 'https://sabbar.com/', tag: 'سعودية', color: '#f9a825' }
+    ];
+
+    function renderJobPlatforms() {
+        const grid = document.getElementById('job-platforms-grid');
+        if (!grid) return;
+        grid.innerHTML = jobPlatforms.map(p => `
+            <a class="job-platform-card" href="${p.url}" target="_blank" rel="noopener noreferrer">
+                <div class="jp-logo-wrap">
+                    <img src="${p.logo}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="jp-logo-fallback" style="display:none;background:${p.color}"><span>${p.name[0]}</span></div>
+                </div>
+                <div class="jp-body">
+                    <div class="jp-header">
+                        <h3>${p.nameAr}</h3>
+                        <span class="jp-tag">${p.tag}</span>
+                    </div>
+                    <p>${p.desc}</p>
+                </div>
+                <div class="jp-arrow"><i class="fa-solid fa-arrow-left"></i></div>
+            </a>
+        `).join('');
+    }
+
+    renderJobPlatforms();
 
     if(getReportBtn) {
         getReportBtn.addEventListener('click', () => {
