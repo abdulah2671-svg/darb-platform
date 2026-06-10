@@ -900,13 +900,57 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
             url: 'https://youtube.com/@iiinetworking?si=QtRXgIGvxa79giCI'
         }
     ];
+    const goldenTips = [
+        {
+            icon: 'fa-star',
+            title: 'حدّث ملفك الشخصي على لينكدإن دائمًا',
+            body: 'اجعل صورتك احترافية، وأضف ملخصًا واضحًا، وتأكد أن المسمى الوظيفي يعكس هدفك المهني الحالي.'
+        },
+        {
+            icon: 'fa-network-wired',
+            title: 'الشبكات المهنية أقوى من السيرة الذاتية',
+            body: 'التواصل مع أشخاص من مجالك يفتح أبوابًا لا تُفتح بالتقديم المباشر. اهتم بناء علاقات حقيقية قبل أن تحتاجها.'
+        },
+        {
+            icon: 'fa-certificate',
+            title: 'الشهادة التقنية تُقرّب المسافات',
+            body: 'شهادة مثل CCNA أو CompTIA تُثبت كفاءتك بشكل ملموس للمسمى الوظيفي وتزيد من قابلية توظيفك بشكل كبير.'
+        },
+        {
+            icon: 'fa-magnifying-glass-chart',
+            title: 'افهم الشركة قبل المقابلة',
+            body: 'ابحث عن منتجات الشركة، ثقافتها، وآخر أخبارها. المرشح الذي يعرف الشركة يترك انطباعًا أقوى بكثير.'
+        },
+        {
+            icon: 'fa-file-lines',
+            title: 'خصّص سيرتك الذاتية لكل وظيفة',
+            body: 'لا ترسل نفس السيرة لكل شركة. اقرأ الإعلان واستخدم نفس كلماته المفتاحية في سيرتك حتى تنجح في فلتر ATS.'
+        },
+        {
+            icon: 'fa-people-arrows',
+            title: 'المقابلة محادثة لا اختبار',
+            body: 'تذكر أن المقابلة فرصة لتكتشف أنت أيضًا إن كانت الشركة مناسبة لك. تحدث بثقة واطرح أسئلة ذكية في النهاية.'
+        },
+        {
+            icon: 'fa-rotate',
+            title: 'تعلّم من كل رفض',
+            body: 'كل رفض يحمل درسًا. اطلب ملاحظات إن أمكن، وراجع ما يمكن تحسينه في سيرتك أو أسلوب مقابلاتك.'
+        },
+        {
+            icon: 'fa-laptop-code',
+            title: 'أبرز مشاريعك العملية',
+            body: 'المشاريع الشخصية والتطبيقية تعوّض قلة الخبرة. انشرها على GitHub أو LinkedIn وشارك تفاصيل ما تعلمته منها.'
+        }
+    ];
     const libraryGrid = document.getElementById('library-grid');
     const libraryFilters = document.querySelectorAll('.library-filter');
 
     function renderLibraryItems(category = 'all') {
         if (!libraryGrid) return;
-        const filteredItems = category === 'all' ? libraryItems : category === 'Influencers' ? [] : libraryItems.filter(item => item.category === category);
+        const isGolden = category === 'GoldenTips';
+        const filteredItems = (category === 'all' || isGolden) ? (isGolden ? [] : libraryItems) : category === 'Influencers' ? [] : libraryItems.filter(item => item.category === category);
         const filteredInfluencers = category === 'all' || category === 'Influencers' ? influencerItems : [];
+        const filteredTips = category === 'all' || isGolden ? goldenTips : [];
         const libraryCards = filteredItems.map(item => `
             <article class="library-card">
                 ${item.type === 'pdf' ? `
@@ -947,7 +991,24 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
                 </article>
             `).join('')}
         ` : '';
-        libraryGrid.innerHTML = `${libraryCards}${influencerCards}`;
+        const tipsSection = filteredTips.length ? `
+            <div class="library-section-title golden-tips-header">
+                <h3><i class="fa-solid fa-star"></i> نصائح ذهبية</h3>
+                <p>نصائح عملية مختارة لمساعدتك في مسيرتك المهنية.</p>
+            </div>
+            ${filteredTips.map(tip => `
+                <article class="library-card golden-tip-card">
+                    <div class="golden-tip-icon">
+                        <i class="fa-solid ${escapeHtml(tip.icon)}"></i>
+                    </div>
+                    <div class="library-card-body">
+                        <h3>${escapeHtml(tip.title)}</h3>
+                        <p>${escapeHtml(tip.body)}</p>
+                    </div>
+                </article>
+            `).join('')}
+        ` : '';
+        libraryGrid.innerHTML = `${libraryCards}${influencerCards}${tipsSection}`;
         renderPdfPreviews();
     }
 
