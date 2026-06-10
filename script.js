@@ -1027,11 +1027,61 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
         if (!grid) return;
         const totalImages = 51;
         const images = Array.from({ length: totalImages }, (_, i) => `assets/golden-tips/tip-${i + 1}.jpeg`);
+
         grid.innerHTML = images.map((src, i) => `
-            <article class="golden-tip-image-card" onclick="this.classList.toggle('expanded')">
+            <div class="gt-card" data-index="${i}">
                 <img src="${src}" alt="نصيحة ذهبية ${i + 1}" loading="lazy">
-            </article>
+                <div class="gt-overlay">
+                    <span class="gt-num">${i + 1}</span>
+                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                </div>
+            </div>
         `).join('');
+
+        // Lightbox
+        let lightbox = document.getElementById('gt-lightbox');
+        if (!lightbox) {
+            lightbox = document.createElement('div');
+            lightbox.id = 'gt-lightbox';
+            lightbox.innerHTML = `
+                <div class="gt-lb-backdrop"></div>
+                <div class="gt-lb-content">
+                    <button class="gt-lb-close"><i class="fa-solid fa-xmark"></i></button>
+                    <button class="gt-lb-prev"><i class="fa-solid fa-chevron-right"></i></button>
+                    <img id="gt-lb-img" src="" alt="">
+                    <button class="gt-lb-next"><i class="fa-solid fa-chevron-left"></i></button>
+                    <span id="gt-lb-counter"></span>
+                </div>
+            `;
+            document.body.appendChild(lightbox);
+
+            let current = 0;
+            const lbImg = document.getElementById('gt-lb-img');
+            const lbCounter = document.getElementById('gt-lb-counter');
+
+            function openLb(idx) {
+                current = idx;
+                lbImg.src = images[current];
+                lbCounter.textContent = `${current + 1} / ${totalImages}`;
+                lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeLb() {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            lightbox.querySelector('.gt-lb-backdrop').addEventListener('click', closeLb);
+            lightbox.querySelector('.gt-lb-close').addEventListener('click', closeLb);
+            lightbox.querySelector('.gt-lb-prev').addEventListener('click', () => { current = (current - 1 + totalImages) % totalImages; lbImg.src = images[current]; lbCounter.textContent = `${current + 1} / ${totalImages}`; });
+            lightbox.querySelector('.gt-lb-next').addEventListener('click', () => { current = (current + 1) % totalImages; lbImg.src = images[current]; lbCounter.textContent = `${current + 1} / ${totalImages}`; });
+            document.addEventListener('keydown', e => { if (!lightbox.classList.contains('open')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowRight') lightbox.querySelector('.gt-lb-prev').click(); if (e.key === 'ArrowLeft') lightbox.querySelector('.gt-lb-next').click(); });
+
+            grid.addEventListener('click', e => {
+                const card = e.target.closest('.gt-card');
+                if (card) openLb(parseInt(card.dataset.index));
+            });
+        }
     }
 
     function renderPdfPreviews() {
