@@ -997,15 +997,11 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
     function renderGoldenTips() {
         const grid = document.getElementById('golden-tips-grid');
         if (!grid) return;
-        grid.innerHTML = goldenTips.map(tip => `
-            <article class="library-card golden-tip-card">
-                <div class="golden-tip-icon">
-                    <i class="fa-solid ${escapeHtml(tip.icon)}"></i>
-                </div>
-                <div class="library-card-body">
-                    <h3>${escapeHtml(tip.title)}</h3>
-                    <p>${escapeHtml(tip.body)}</p>
-                </div>
+        const totalImages = 51;
+        const images = Array.from({ length: totalImages }, (_, i) => `assets/golden-tips/tip-${i + 1}.jpeg`);
+        grid.innerHTML = images.map((src, i) => `
+            <article class="golden-tip-image-card" onclick="this.classList.toggle('expanded')">
+                <img src="${src}" alt="نصيحة ذهبية ${i + 1}" loading="lazy">
             </article>
         `).join('');
     }

@@ -760,6 +760,36 @@ textarea:focus, .form-control:focus {
     color: #fff;
 }
 
+/* Golden Tips Image Grid */
+#golden-tips-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+}
+.golden-tip-image-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-sm);
+}
+.golden-tip-image-card:hover {
+    border-color: rgba(185, 146, 61, 0.55);
+    box-shadow: 0 10px 24px rgba(17, 17, 17, 0.12);
+    transform: translateY(-3px);
+}
+.golden-tip-image-card img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+.golden-tip-image-card.expanded {
+    grid-column: span 2;
+    border-color: var(--brand-gold);
+    box-shadow: 0 16px 40px rgba(17, 17, 17, 0.18);
+}
+
 /* Toasts */
 .toast-container { position: fixed; bottom: 24px; left: 24px; display: flex; flex-direction: column; gap: 10px; z-index: 9999; }
 .toast { background: white; border-radius: var(--radius-md); padding: 16px 20px; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 12px; animation: slideUp 0.3s ease forwards; max-width: 350px; border-right: 4px solid var(--accent); }
