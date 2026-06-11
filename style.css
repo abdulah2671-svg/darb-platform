@@ -774,6 +774,84 @@ textarea:focus, .form-control:focus {
     color: #fff;
 }
 
+/* Influencers Section */
+.influencers-icon-hero { color: var(--accent); }
+.influencers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.inf-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--text-main);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+.inf-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 4px; height: 100%;
+    background: var(--brand-gold);
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+.inf-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(17,17,17,0.10);
+    border-color: rgba(185,146,61,0.35);
+}
+.inf-card:hover::before { opacity: 1; }
+.inf-avatar {
+    width: 52px; height: 52px;
+    border-radius: var(--radius-md);
+    border: 1.5px solid;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+.inf-body { flex: 1; min-width: 0; }
+.inf-header {
+    display: flex; align-items: center;
+    gap: 8px; margin-bottom: 4px; flex-wrap: wrap;
+}
+.inf-header h3 { font-size: 16px; font-weight: 700; color: var(--primary); margin: 0; }
+.inf-field-tag {
+    font-size: 11px; font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    background: var(--accent-light);
+    color: var(--accent);
+    white-space: nowrap;
+}
+.inf-handle {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    direction: ltr;
+    text-align: right;
+}
+.inf-body p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.55; }
+.inf-platform-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 700;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    align-self: flex-start;
+}
+
 /* Job Platforms */
 .job-platforms-icon-hero { color: var(--accent); }
 .job-platforms-grid {

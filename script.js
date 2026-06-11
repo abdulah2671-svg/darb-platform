@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'company-intelligence': { title: 'مُحلل الشركات (Company Analyzer)', desc: 'احصل على ملخص تحضيري موضوعي حول الشركة والدور المستهدف' },
         'career-library': { title: 'المكتبة المهنية (Career Library)', desc: 'حمّل ملفات تقنية ومهنية مختارة لدعم جاهزيتك الوظيفية' },
         'golden-tips': { title: 'نصائح ذهبية', desc: 'نصائح عملية مختارة لمساعدتك في مسيرتك المهنية' },
-        'job-platforms': { title: 'منصات توظيف', desc: 'اضغط على أي منصة للانتقال إليها مباشرةً' }
+        'job-platforms': { title: 'منصات توظيف', desc: 'اضغط على أي منصة للانتقال إليها مباشرةً' },
+        'influencers-section': { title: 'حسابات المؤثرين في التواصل الاجتماعي', desc: 'حسابات مختارة لأبرز المؤثرين في التقنية والتوظيف والتطوير المهني' }
     };
 
     // --- Mobile Sidebar Toggle ---
@@ -1132,6 +1133,56 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
     };
 
     renderGoldenTips();
+
+    // --- Influencers Section ---
+    const influencerAccounts = [
+        { nameAr: 'بدر العساكر', handle: '@badr_alasaker', platform: 'twitter', url: 'https://twitter.com/badr_alasaker', bio: 'محتوى في ريادة الأعمال والتطوير الذاتي والتقنية.', field: 'ريادة أعمال', color: '#1da1f2' },
+        { nameAr: 'محمد الغامدي', handle: '@m_alghamdi_tech', platform: 'twitter', url: 'https://twitter.com/m_alghamdi_tech', bio: 'متخصص في الأمن السيبراني ومشاركة المحتوى التقني.', field: 'أمن سيبراني', color: '#1da1f2' },
+        { nameAr: 'Fireship', handle: '@fireship_dev', platform: 'youtube', url: 'https://www.youtube.com/@Fireship', bio: 'شروحات برمجية مكثفة وسريعة لمطوري الويب.', field: 'برمجة', color: '#ff0000' },
+        { nameAr: 'NetworkChuck', handle: '@NetworkChuck', platform: 'youtube', url: 'https://www.youtube.com/@NetworkChuck', bio: 'شبكات وسيبراني وكلاود بأسلوب ممتع ومحفز.', field: 'شبكات & سيبراني', color: '#ff0000' },
+        { nameAr: 'TechWorld with Nana', handle: '@TechWorldwithNana', platform: 'youtube', url: 'https://www.youtube.com/@TechWorldwithNana', bio: 'DevOps وكلاود وـ Kubernetes بأوضح شرح.', field: 'DevOps & Cloud', color: '#ff0000' },
+        { nameAr: 'فهد الشمري', handle: '@fahad_tech', platform: 'twitter', url: 'https://twitter.com/fahad_tech', bio: 'محتوى تقني ومهني موجه للسوق السعودي.', field: 'تقنية', color: '#1da1f2' },
+        { nameAr: 'Traversy Media', handle: '@traversymedia', platform: 'youtube', url: 'https://www.youtube.com/@TraversyMedia', bio: 'دورات تطوير ويب شاملة من المبتدئ للمحترف.', field: 'تطوير ويب', color: '#ff0000' },
+        { nameAr: 'David Bombal', handle: '@davidbombal', platform: 'youtube', url: 'https://www.youtube.com/@davidbombal', bio: 'شبكات وـ CCNA وـ ethical hacking.', field: 'شبكات', color: '#ff0000' },
+        { nameAr: 'سارة الحربي', handle: '@sara_tech_sa', platform: 'linkedin', url: 'https://www.linkedin.com/in/sara-tech-sa', bio: 'مطورة برمجيات تشارك تجربتها في سوق التقنية السعودي.', field: 'برمجة', color: '#0077b5' },
+        { nameAr: 'Kevin Stratvert', handle: '@KevinStratvert', platform: 'youtube', url: 'https://www.youtube.com/@KevinStratvert', bio: 'أدوات Microsoft وـ AI وإنتاجية العمل.', field: 'أدوات مهنية', color: '#ff0000' },
+        { nameAr: 'Jeff Su', handle: '@JeffSu', platform: 'youtube', url: 'https://www.youtube.com/@JeffSu', bio: 'نصائح مهنية وبناء السيرة الذاتية والتفوق في العمل.', field: 'تطوير مهني', color: '#ff0000' },
+        { nameAr: 'Lenny Rachitsky', handle: '@lennysan', platform: 'linkedin', url: 'https://www.linkedin.com/in/lennyrachitsky/', bio: 'مدير منتج سابق في Airbnb، محتوى Product Management.', field: 'إدارة منتجات', color: '#0077b5' }
+    ];
+
+    const platformIcons = {
+        twitter:  { icon: 'fa-brands fa-x-twitter',  color: '#111', label: 'X / Twitter' },
+        youtube:  { icon: 'fa-brands fa-youtube',     color: '#ff0000', label: 'YouTube' },
+        linkedin: { icon: 'fa-brands fa-linkedin',    color: '#0077b5', label: 'LinkedIn' },
+        instagram:{ icon: 'fa-brands fa-instagram',   color: '#e1306c', label: 'Instagram' }
+    };
+
+    function renderInfluencers() {
+        const grid = document.getElementById('influencers-grid');
+        if (!grid) return;
+        grid.innerHTML = influencerAccounts.map(p => {
+            const pl = platformIcons[p.platform] || platformIcons.twitter;
+            return `
+            <a class="inf-card" href="${p.url}" target="_blank" rel="noopener noreferrer">
+                <div class="inf-avatar" style="background:${p.color}22;border-color:${p.color}44">
+                    <i class="${pl.icon}" style="color:${pl.color}"></i>
+                </div>
+                <div class="inf-body">
+                    <div class="inf-header">
+                        <h3>${p.nameAr}</h3>
+                        <span class="inf-field-tag">${p.field}</span>
+                    </div>
+                    <span class="inf-handle">${p.handle}</span>
+                    <p>${p.bio}</p>
+                </div>
+                <div class="inf-platform-badge" style="background:${pl.color}18;color:${pl.color}">
+                    <i class="${pl.icon}"></i> ${pl.label}
+                </div>
+            </a>`;
+        }).join('');
+    }
+
+    renderInfluencers();
 
     // --- Job Platforms ---
     const jobPlatforms = [

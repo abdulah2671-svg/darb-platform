@@ -11,7 +11,7 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=27">
+    <link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
     <div class="app-container">
@@ -53,6 +53,10 @@
                     <button class="nav-item" data-target="job-platforms">
                         <i class="fa-solid fa-briefcase"></i>
                         <span>منصات توظيف</span>
+                    </button>
+                    <button class="nav-item" data-target="influencers-section">
+                        <i class="fa-solid fa-users"></i>
+                        <span>حسابات المؤثرين</span>
                     </button>
                 </nav>
             </div>
@@ -294,6 +298,18 @@
                     </div>
                 </section>
 
+                <!-- Section 7: Influencers -->
+                <section id="influencers-section" class="app-section">
+                    <div class="library-layout">
+                        <div class="intelligence-header text-center">
+                            <div class="icon-hero influencers-icon-hero"><i class="fa-solid fa-users"></i></div>
+                            <h2>حسابات المؤثرين في التواصل الاجتماعي</h2>
+                            <p class="text-muted max-w-md mx-auto mt-2">حسابات مختارة لأبرز المؤثرين في مجال التقنية والتوظيف والتطوير المهني.</p>
+                        </div>
+                        <div id="influencers-grid" class="influencers-grid"></div>
+                    </div>
+                </section>
+
                 <!-- Section 6: Job Platforms -->
                 <section id="job-platforms" class="app-section">
                     <div class="library-layout">
@@ -348,6 +364,6 @@
     <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
-    <script src="script.js?v=27"></script>
+    <script src="script.js?v=28"></script>
 </body>
 </html>
