@@ -1000,26 +1000,7 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
                 </a>
             </article>
         `).join('');
-        const influencerCards = filteredInfluencers.length ? `
-            <div class="library-section-title">
-                <h3>الأشخاص المؤثرين في المجال</h3>
-                <p>حسابات مختارة لمتابعة محتوى مهني وتقني مفيد.</p>
-            </div>
-            ${filteredInfluencers.map(item => `
-                <article class="library-card influencer-card">
-                    <img class="influencer-photo" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}">
-                    <div class="library-card-body">
-                        <span class="library-category">${item.category}</span>
-                        <h3>${escapeHtml(item.name)}</h3>
-                        <p>${escapeHtml(item.description)}</p>
-                    </div>
-                    <a class="btn btn-outline btn-sm library-download" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> رابط الحساب
-                    </a>
-                </article>
-            `).join('')}
-        ` : '';
-        libraryGrid.innerHTML = `${libraryCards}${influencerCards}`;
+        libraryGrid.innerHTML = libraryCards;
         renderPdfPreviews();
     }
 
@@ -1176,11 +1157,28 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
     function renderInfluencers() {
         const grid = document.getElementById('influencers-grid');
         if (!grid) return;
-        grid.innerHTML = influencerAccounts.map(p => {
+
+        // بطاقات المؤثرين من المكتبة (بصورهم)
+        const libraryInfluencerCards = influencerItems.map(item => `
+            <article class="library-card influencer-card">
+                <img class="influencer-photo" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}">
+                <div class="library-card-body">
+                    <span class="library-category">${item.category}</span>
+                    <h3>${escapeHtml(item.name)}</h3>
+                    <p>${escapeHtml(item.description)}</p>
+                </div>
+                <a class="btn btn-outline btn-sm library-download" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> رابط الحساب
+                </a>
+            </article>
+        `).join('');
+
+        // بطاقات المؤثرين من ملف المستخدم
+        const accountCards = influencerAccounts.map(p => {
             const pl = platformIcons[p.platform] || platformIcons.twitter;
             return `
             <a class="inf-card" href="${p.url}" target="_blank" rel="noopener noreferrer">
-                <div class="inf-avatar" style="background:${p.color}22;border-color:${p.color}44">
+                <div class="inf-avatar" style="background:${pl.color}18;border-color:${pl.color}33">
                     <i class="${pl.icon}" style="color:${pl.color}"></i>
                 </div>
                 <div class="inf-body">
@@ -1196,6 +1194,19 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
                 </div>
             </a>`;
         }).join('');
+
+        grid.innerHTML = `
+            <div class="library-section-title">
+                <h3>مؤثرون موصى بهم</h3>
+                <p>حسابات مختارة لمتابعة محتوى مهني وتقني مفيد.</p>
+            </div>
+            <div class="library-grid">${libraryInfluencerCards}</div>
+            <div class="library-section-title" style="margin-top:32px">
+                <h3>حسابات التواصل الاجتماعي</h3>
+                <p>حسابات مختارة لأبرز المؤثرين في مجال التقنية والتوظيف والتطوير المهني.</p>
+            </div>
+            <div class="influencers-grid">${accountCards}</div>
+        `;
     }
 
     renderInfluencers();
