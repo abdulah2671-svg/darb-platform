@@ -820,11 +820,9 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 
     // --- Section 2: Interview Coach Logic ---
     const startInterviewBtn = document.getElementById('start-interview-btn');
-    const getEvaluationBtn = document.getElementById('get-evaluation-btn');
     const chatMessages = document.getElementById('chat-messages');
     const chatTextarea = document.getElementById('chat-textarea');
     const sendMsgBtn = document.getElementById('send-msg-btn');
-    const evalResults = document.getElementById('evaluation-results');
     
     let interviewActive = false;
     let interviewTurn = 0;
@@ -862,7 +860,6 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
             currentInterviewScenario = buildMixedInterviewScenario();
             chatTextarea.disabled = true;
             sendMsgBtn.disabled = true;
-            getEvaluationBtn.disabled = false;
             startInterviewBtn.disabled = true;
             startInterviewBtn.style.display = 'none';
             playInterviewScenario();
@@ -890,24 +887,6 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
         });
     }
 
-    if(getEvaluationBtn) {
-        getEvaluationBtn.addEventListener('click', () => {
-            evalResults.classList.add('show');
-            const feedbackText = evalResults.querySelector('p');
-            if (feedbackText) {
-                feedbackText.textContent = 'شاهدت نموذج مقابلة واقعية. ركّز على بداية الإجابة بهدوء، ثم ذكر خطوات واضحة، ثم ربط خبرتك بأساسيات الشبكات والدعم الفني.';
-            }
-            getEvaluationBtn.innerHTML = '<i class="fa-solid fa-check"></i> اكتمل ملخص السيناريو';
-            getEvaluationBtn.classList.replace('btn-success', 'btn-outline');
-            getEvaluationBtn.disabled = true;
-            
-            interviewActive = false;
-            chatTextarea.disabled = true;
-            sendMsgBtn.disabled = true;
-            
-            showToast('تم إصدار تقرير تقييم المقابلة.');
-        });
-    }
 
     // --- Section 3: Career Library ---
     const libraryItems = [
