@@ -723,7 +723,7 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
             list.forEach(item => addBulletItem(item));
         });
 
-        const fileName = originalName.replace(/\.pdf$/i, '') + '-enhanced.pdf';
+        const fileName = originalName.replace(/\.(pdf|html|docx|doc)$/i, '') + '-enhanced.pdf';
         doc.save(fileName);
     }
 
@@ -908,10 +908,10 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
                 showToast('لا يوجد ملف محسّن جاهز للتحميل.', 'error');
                 return;
             }
-            const outputName = `${currentResumeData?.name || 'resume'}-محسن.html`;
+            const outputName = `${currentResumeData?.name || 'resume'}.pdf`;
             try {
                 exportAsPdf(improvedCvText, outputName);
-                showToast('تم تحميل نسخة HTML واضحة، افتحها واضغط حفظ كملف PDF عند الحاجة.');
+                showToast('تم تحميل السيرة الذاتية المحسّنة كملف PDF.');
             } catch (error) {
                 showToast('تعذر إنشاء الملف. يمكنك نسخ النص المحسّن يدويًا.', 'error');
             }
