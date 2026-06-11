@@ -1117,34 +1117,34 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 
     // --- Influencers Section ---
     const influencerAccounts = [
-        { nameAr: 'سَ | وظائف', handle: '@S2_JOB2', platform: 'twitter', url: 'https://x.com/s2_job2', bio: 'أخصائي استقطاب وعضو معتمد في اتحاد التوظيف البريطاني (REC).', field: 'توظيف' },
-        { nameAr: 'أنس إبراهيم', handle: '@anas_ibrahim97', platform: 'twitter', url: 'https://x.com/anas_ibrahim97', bio: 'مختص في إدارة وتطوير قنوات اليوتيوب — أحوّل قناتك إلى علامة تجارية ومصدر دخل حقيقي.', field: 'يوتيوب & محتوى' },
-        { nameAr: 'خطاف الخطاف', handle: '@khattaf1', platform: 'twitter', url: 'https://x.com/khattaf1', bio: 'شريك إعلاني معتمد من Google Ads ومستشار تسويق، حائز جائزة الأميرة صيتة في المعرفة الرقمية.', field: 'تسويق رقمي' },
-        { nameAr: 'ترند الأخبار | Trendnews24', handle: '@trendnews_24', platform: 'twitter', url: 'https://x.com/trendnews_24', bio: 'منصة ترند الأخبار ترصد جميع الأخبار الرائجة في السعودية والعالم.', field: 'أخبار & ترند' },
-        { nameAr: 'أحمد الزهراني', handle: '@ENGAALZAHRANI', platform: 'twitter', url: 'https://x.com/engaalzahrani', bio: 'تمكين قادة المستقبل في الموارد البشرية — مؤسس منصة عالم الموارد البشرية.', field: 'موارد بشرية' },
-        { nameAr: 'كورسات', handle: '@c_4et', platform: 'twitter', url: 'https://x.com/c_4et', bio: 'حساب مهتم بنشر مقالات في برمجة الويب وكورسات مجانية في مجال الويب.', field: 'برمجة ويب' },
-        { nameAr: 'ترافس TRAVIS', handle: '@iirode0', platform: 'twitter', url: 'https://x.com/iirode0', bio: 'ينقل أخبار وتغطيات ومنوعات من شتى بقاع العالم.', field: 'أخبار & منوعات' },
-        { nameAr: 'عبير الحسن', handle: '@AbeerAlhasan', platform: 'twitter', url: 'https://x.com/abeeralhasan', bio: 'رائدة أعمال ومستشارة تسويق، مؤثرة رقمية تدرب في التقنية وتقود تطوير الأعمال.', field: 'ريادة أعمال' },
-        { nameAr: 'سعود في السوق الأمريكي', handle: '@s_usa2001', platform: 'twitter', url: 'https://x.com/s_usa2001', bio: 'مهتم ومستثمر في السوق الأمريكي — محتوى استثماري متخصص.', field: 'استثمار' },
-        { nameAr: 'البرمجة للجميع', handle: '@p_4all', platform: 'twitter', url: 'https://x.com/p_4all', bio: 'فريق متخصص بتقديم خدمات البرمجة وتطوير وتصميم مواقع الويب.', field: 'برمجة ويب' },
-        { nameAr: 'مبارك آل مبارك', handle: '@Mbk8g', platform: 'twitter', url: 'https://x.com/mbk8g', bio: 'ينشر ويترجم كل جديد وحصري من الأخبار المحلية والعالمية.', field: 'أخبار' },
-        { nameAr: 'فهد بن مبارك HR', handle: '@fhd20hm', platform: 'twitter', url: 'https://x.com/fhd20hm', bio: 'مختص بصياغة عقود العمل والامتثال لنظامها وتبسيط تعقيدات العلاقة العمالية والموارد البشرية.', field: 'موارد بشرية' },
-        { nameAr: 'دليلك للآيلتس', handle: '@Dalilk4ielts', platform: 'twitter', url: 'https://x.com/dalilk4ielts', bio: 'مدرب في الآيلتس والتطوير المهني، عضو في الاتحاد الدولي للتدريب ICF.', field: 'تطوير مهني' },
-        { nameAr: 'عماد الشريف', handle: '@3madAlshareef', platform: 'twitter', url: 'https://x.com/3madalshareef', bio: 'مهتم بشؤون التعليم والوظائف.', field: 'توظيف & تعليم' },
-        { nameAr: 'مصعب المرشدي', handle: '@malmarshedi', platform: 'twitter', url: 'https://x.com/malmarshedi', bio: 'مستثمر متخصص في قطاع صناعة المستحضرات الطبية والتجميلية والأجهزة الطبية.', field: 'استثمار' },
-        { nameAr: 'أبو يزن', handle: '@AymanBasha', platform: 'twitter', url: 'https://x.com/aymanbasha', bio: 'متخصص في التجارة الإلكترونية وخدمات شراء واستيراد وشحن من الصين.', field: 'تجارة إلكترونية' },
-        { nameAr: 'تعلم إكسل مجاناً', handle: '@ExcelAr22', platform: 'twitter', url: 'https://x.com/excelar22', bio: 'كل ما تحتاج معرفته لاحتراف إكسل — متاح مجاناً.', field: 'مهارات مكتبية' },
-        { nameAr: 'سعيد عبدالجبار', handle: '@Saeed_AJ', platform: 'twitter', url: 'https://x.com/saeed_aj', bio: 'مستثمر ومهتم بمواضيع أسواق المال والأعمال.', field: 'استثمار & مال' },
-        { nameAr: 'بندر المسند', handle: '@EcoOneE', platform: 'twitter', url: 'https://x.com/ecoonee', bio: 'كاتب محترف، مؤسس وكالة محتوى ابداع، ومختص بالتسويق وصناعة المحتوى.', field: 'تسويق & محتوى' },
-        { nameAr: 'محمد بن دليم القحطاني', handle: '@DrMDMQ', platform: 'twitter', url: 'https://x.com/drmdmq', bio: 'مفكر اقتصادي متخصص في اقتصاد المستقبل والتحولات العالمية.', field: 'اقتصاد' },
-        { nameAr: 'وافي بن عبدالله', handle: '@Dr_Wafy', platform: 'twitter', url: 'https://x.com/dr_wafy', bio: 'أكاديمي، دكتور في اللغويات الحاسوبية.', field: 'أكاديمي & تقنية' },
-        { nameAr: 'منصة ترس', handle: '@Taras_saudi', platform: 'twitter', url: 'https://x.com/taras_saudi', bio: 'وظائف وأكثر — منصة سعودية لمتابعة فرص العمل.', field: 'توظيف' },
-        { nameAr: 'عبدالعزيز المهباش', handle: '@AAlmehbash', platform: 'twitter', url: 'https://x.com/aalmehbash', bio: 'مقدم برامج وكاتب إعلامي مختص في الموارد البشرية.', field: 'موارد بشرية' },
-        { nameAr: 'إياد الحمر', handle: '@Eyaaaad', platform: 'twitter', url: 'https://x.com/eyaaaad', bio: 'ينشر غرائب الأخبار والمقاطع والدراسات العالمية التي قد لا ينشرها الإعلام.', field: 'أخبار & ثقافة' },
-        { nameAr: 'رضا العيدروس', handle: '@Reda_Alidarous', platform: 'twitter', url: 'https://x.com/reda_alidarous', bio: 'مستشار مالي، خبرة مصرفية ومالية 26 عاماً، خبير في التحليل والتقييم الائتماني.', field: 'مال & استثمار' },
-        { nameAr: 'عبدالمجيد', handle: '@Abdulmajeedful', platform: 'twitter', url: 'https://x.com/abdulmajeedful', bio: 'ماجستير موارد بشرية، بكالوريوس إدارة أعمال.', field: 'موارد بشرية' },
-        { nameAr: 'ثامر الغالي', handle: '@i3rab', platform: 'twitter', url: 'https://x.com/i3rab', bio: 'نبحر في عالم السياحة والتقنية.', field: 'سياحة & تقنية' },
-        { nameAr: 'ماجد المقاطي', handle: '@malmuqti', platform: 'twitter', url: 'https://x.com/malmuqti', bio: 'مهتم بالاستثمار وأسواق المال.', field: 'استثمار' }
+        { nameAr: 'سَ | وظائف', handle: '@S2_JOB2', url: 'https://x.com/s2_job2', bio: 'أخصائي استقطاب وعضو معتمد في اتحاد التوظيف البريطاني (REC).', image: 'assets/influencers/image1.png' },
+        { nameAr: 'أنس إبراهيم', handle: '@anas_ibrahim97', url: 'https://x.com/anas_ibrahim97', bio: 'مختص في إدارة وتطوير قنوات اليوتيوب — أحوّل قناتك إلى علامة تجارية ومصدر دخل حقيقي.', image: 'assets/influencers/image2.png' },
+        { nameAr: 'خطاف الخطاف', handle: '@khattaf1', url: 'https://x.com/khattaf1', bio: 'شريك إعلاني معتمد من Google Ads ومستشار تسويق، حائز جائزة الأميرة صيتة في المعرفة الرقمية.', image: 'assets/influencers/image3.png' },
+        { nameAr: 'ترند الأخبار | Trendnews24', handle: '@trendnews_24', url: 'https://x.com/trendnews_24', bio: 'منصة ترند الأخبار ترصد جميع الأخبار الرائجة في السعودية والعالم.', image: 'assets/influencers/image4.png' },
+        { nameAr: 'أحمد الزهراني', handle: '@ENGAALZAHRANI', url: 'https://x.com/engaalzahrani', bio: 'تمكين قادة المستقبل في الموارد البشرية — مؤسس منصة عالم الموارد البشرية.', image: 'assets/influencers/image5.png' },
+        { nameAr: 'كورسات', handle: '@c_4et', url: 'https://x.com/c_4et', bio: 'حساب مهتم بنشر مقالات في برمجة الويب وكورسات مجانية في مجال الويب.', image: 'assets/influencers/image6.png' },
+        { nameAr: 'ترافس TRAVIS', handle: '@iirode0', url: 'https://x.com/iirode0', bio: 'ينقل أخبار وتغطيات ومنوعات من شتى بقاع العالم.', image: 'assets/influencers/image7.png' },
+        { nameAr: 'عبير الحسن', handle: '@AbeerAlhasan', url: 'https://x.com/abeeralhasan', bio: 'رائدة أعمال ومستشارة تسويق، مؤثرة رقمية تدرب في التقنية وتقود تطوير الأعمال.', image: 'assets/influencers/image8.png' },
+        { nameAr: 'سعود في السوق الأمريكي', handle: '@s_usa2001', url: 'https://x.com/s_usa2001', bio: 'مهتم ومستثمر في السوق الأمريكي — محتوى استثماري متخصص.', image: 'assets/influencers/image9.png' },
+        { nameAr: 'البرمجة للجميع', handle: '@p_4all', url: 'https://x.com/p_4all', bio: 'فريق متخصص بتقديم خدمات البرمجة وتطوير وتصميم مواقع الويب.', image: 'assets/influencers/image10.png' },
+        { nameAr: 'مبارك آل مبارك', handle: '@Mbk8g', url: 'https://x.com/mbk8g', bio: 'ينشر ويترجم كل جديد وحصري من الأخبار المحلية والعالمية.', image: 'assets/influencers/image11.png' },
+        { nameAr: 'فهد بن مبارك HR', handle: '@fhd20hm', url: 'https://x.com/fhd20hm', bio: 'مختص بصياغة عقود العمل والامتثال لنظامها وتبسيط تعقيدات العلاقة العمالية والموارد البشرية.', image: 'assets/influencers/image12.png' },
+        { nameAr: 'دليلك للآيلتس', handle: '@Dalilk4ielts', url: 'https://x.com/dalilk4ielts', bio: 'مدرب في الآيلتس والتطوير المهني، عضو في الاتحاد الدولي للتدريب ICF.', image: 'assets/influencers/image13.png' },
+        { nameAr: 'عماد الشريف', handle: '@3madAlshareef', url: 'https://x.com/3madalshareef', bio: 'مهتم بشؤون التعليم والوظائف.', image: 'assets/influencers/image14.png' },
+        { nameAr: 'مصعب المرشدي', handle: '@malmarshedi', url: 'https://x.com/malmarshedi', bio: 'مستثمر متخصص في قطاع صناعة المستحضرات الطبية والتجميلية والأجهزة الطبية.', image: 'assets/influencers/image15.png' },
+        { nameAr: 'أبو يزن', handle: '@AymanBasha', url: 'https://x.com/aymanbasha', bio: 'متخصص في التجارة الإلكترونية وخدمات شراء واستيراد وشحن من الصين.', image: 'assets/influencers/image16.png' },
+        { nameAr: 'تعلم إكسل مجاناً', handle: '@ExcelAr22', url: 'https://x.com/excelar22', bio: 'كل ما تحتاج معرفته لاحتراف إكسل — متاح مجاناً.', image: 'assets/influencers/image17.png' },
+        { nameAr: 'سعيد عبدالجبار', handle: '@Saeed_AJ', url: 'https://x.com/saeed_aj', bio: 'مستثمر ومهتم بمواضيع أسواق المال والأعمال.', image: 'assets/influencers/image18.png' },
+        { nameAr: 'بندر المسند', handle: '@EcoOneE', url: 'https://x.com/ecoonee', bio: 'كاتب محترف، مؤسس وكالة محتوى ابداع، ومختص بالتسويق وصناعة المحتوى.', image: 'assets/influencers/image19.png' },
+        { nameAr: 'محمد بن دليم القحطاني', handle: '@DrMDMQ', url: 'https://x.com/drmdmq', bio: 'مفكر اقتصادي متخصص في اقتصاد المستقبل والتحولات العالمية.', image: 'assets/influencers/image20.jpeg' },
+        { nameAr: 'وافي بن عبدالله', handle: '@Dr_Wafy', url: 'https://x.com/dr_wafy', bio: 'أكاديمي، دكتور في اللغويات الحاسوبية.', image: 'assets/influencers/image21.png' },
+        { nameAr: 'منصة ترس', handle: '@Taras_saudi', url: 'https://x.com/taras_saudi', bio: 'وظائف وأكثر — منصة سعودية لمتابعة فرص العمل.', image: 'assets/influencers/image22.png' },
+        { nameAr: 'عبدالعزيز المهباش', handle: '@AAlmehbash', url: 'https://x.com/aalmehbash', bio: 'مقدم برامج وكاتب إعلامي مختص في الموارد البشرية.', image: 'assets/influencers/image23.jpeg' },
+        { nameAr: 'إياد الحمر', handle: '@Eyaaaad', url: 'https://x.com/eyaaaad', bio: 'ينشر غرائب الأخبار والمقاطع والدراسات العالمية التي قد لا ينشرها الإعلام.', image: 'assets/influencers/image24.png' },
+        { nameAr: 'رضا العيدروس', handle: '@Reda_Alidarous', url: 'https://x.com/reda_alidarous', bio: 'مستشار مالي، خبرة مصرفية ومالية 26 عاماً، خبير في التحليل والتقييم الائتماني.', image: 'assets/influencers/image25.png' },
+        { nameAr: 'عبدالمجيد', handle: '@Abdulmajeedful', url: 'https://x.com/abdulmajeedful', bio: 'ماجستير موارد بشرية، بكالوريوس إدارة أعمال.', image: 'assets/influencers/image26.jpeg' },
+        { nameAr: 'ثامر الغالي', handle: '@i3rab', url: 'https://x.com/i3rab', bio: 'نبحر في عالم السياحة والتقنية.', image: 'assets/influencers/image27.jpeg' },
+        { nameAr: 'ماجد المقاطي', handle: '@malmuqti', url: 'https://x.com/malmuqti', bio: 'مهتم بالاستثمار وأسواق المال.', image: 'assets/influencers/image28.png' }
     ];
 
     const platformIcons = {
@@ -1158,55 +1158,25 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
         const grid = document.getElementById('influencers-grid');
         if (!grid) return;
 
-        // بطاقات المؤثرين من المكتبة (بصورهم)
-        const libraryInfluencerCards = influencerItems.map(item => `
+        // كل المؤثرين بنفس شكل البطاقة: صورة دائرية + اسم + وصف + رابط
+        const allCards = [
+            ...influencerItems.map(item => ({ nameAr: item.name, handle: '', url: item.url, bio: item.description, image: item.image })),
+            ...influencerAccounts
+        ].map(p => `
             <article class="library-card influencer-card">
-                <img class="influencer-photo" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}">
+                <img class="influencer-photo" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.nameAr)}" onerror="this.style.display='none'">
                 <div class="library-card-body">
-                    <span class="library-category">${item.category}</span>
-                    <h3>${escapeHtml(item.name)}</h3>
-                    <p>${escapeHtml(item.description)}</p>
+                    <h3>${escapeHtml(p.nameAr)}</h3>
+                    ${p.handle ? `<span class="inf-handle-small">${escapeHtml(p.handle)}</span>` : ''}
+                    <p>${escapeHtml(p.bio)}</p>
                 </div>
-                <a class="btn btn-outline btn-sm library-download" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">
+                <a class="btn btn-outline btn-sm library-download" href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i> رابط الحساب
                 </a>
             </article>
         `).join('');
 
-        // بطاقات المؤثرين من ملف المستخدم
-        const accountCards = influencerAccounts.map(p => {
-            const pl = platformIcons[p.platform] || platformIcons.twitter;
-            return `
-            <a class="inf-card" href="${p.url}" target="_blank" rel="noopener noreferrer">
-                <div class="inf-avatar" style="background:${pl.color}18;border-color:${pl.color}33">
-                    <i class="${pl.icon}" style="color:${pl.color}"></i>
-                </div>
-                <div class="inf-body">
-                    <div class="inf-header">
-                        <h3>${p.nameAr}</h3>
-                        <span class="inf-field-tag">${p.field}</span>
-                    </div>
-                    <span class="inf-handle">${p.handle}</span>
-                    <p>${p.bio}</p>
-                </div>
-                <div class="inf-platform-badge" style="background:${pl.color}18;color:${pl.color}">
-                    <i class="${pl.icon}"></i> ${pl.label}
-                </div>
-            </a>`;
-        }).join('');
-
-        grid.innerHTML = `
-            <div class="library-section-title">
-                <h3>مؤثرون موصى بهم</h3>
-                <p>حسابات مختارة لمتابعة محتوى مهني وتقني مفيد.</p>
-            </div>
-            <div class="library-grid">${libraryInfluencerCards}</div>
-            <div class="library-section-title" style="margin-top:32px">
-                <h3>حسابات التواصل الاجتماعي</h3>
-                <p>حسابات مختارة لأبرز المؤثرين في مجال التقنية والتوظيف والتطوير المهني.</p>
-            </div>
-            <div class="influencers-grid">${accountCards}</div>
-        `;
+        grid.innerHTML = `<div class="library-grid">${allCards}</div>`;
     }
 
     renderInfluencers();
