@@ -1007,7 +1007,7 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
     function renderGoldenTips() {
         const grid = document.getElementById('golden-tips-grid');
         if (!grid) return;
-        const totalImages = 51;
+        const totalImages = 60;
         const images = Array.from({ length: totalImages }, (_, i) => `assets/golden-tips/tip-${i + 1}.jpeg`);
 
         grid.innerHTML = images.map((src, i) => `
