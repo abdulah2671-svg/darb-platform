@@ -716,9 +716,9 @@ textarea:focus, .form-control:focus {
 .library-layout { max-width: 1100px; margin: 0 auto; }
 .library-filters { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
 .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
-#influencers-grid .library-grid { grid-template-columns: repeat(3, 1fr) !important; }
-#influencers-section .library-layout { max-width: 100%; }
-#influencers-section .influencers-grid { max-width: 100%; }
+#influencers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; width: 100%; }
+#influencers-grid .library-grid { display: contents; }
+#influencers-grid .library-card { min-height: unset; }
 .library-card { min-height: 260px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(180deg, #ffffff, #fffaf0); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-sm); transition: var(--transition); }
 .library-card:hover { transform: translateY(-4px); border-color: rgba(185, 146, 61, 0.45); box-shadow: 0 14px 28px rgba(17, 17, 17, 0.10); }
 .library-card-icon { width: 42px; height: 42px; border-radius: var(--radius-md); background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 14px; }
