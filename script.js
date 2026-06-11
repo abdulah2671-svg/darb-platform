@@ -1055,9 +1055,16 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 
             lightbox.querySelector('.gt-lb-backdrop').addEventListener('click', closeLb);
             lightbox.querySelector('.gt-lb-close').addEventListener('click', closeLb);
-            lightbox.querySelector('.gt-lb-prev').addEventListener('click', () => { current = (current - 1 + totalImages) % totalImages; lbImg.src = images[current]; lbCounter.textContent = `${current + 1} / ${totalImages}`; });
-            lightbox.querySelector('.gt-lb-next').addEventListener('click', () => { current = (current + 1) % totalImages; lbImg.src = images[current]; lbCounter.textContent = `${current + 1} / ${totalImages}`; });
-            document.addEventListener('keydown', e => { if (!lightbox.classList.contains('open')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowRight') lightbox.querySelector('.gt-lb-prev').click(); if (e.key === 'ArrowLeft') lightbox.querySelector('.gt-lb-next').click(); });
+            function goTo(idx) {
+                current = (idx + totalImages) % totalImages;
+                const newImg = new Image();
+                newImg.onload = () => { lbImg.src = newImg.src; };
+                newImg.src = images[current];
+                lbCounter.textContent = `${current + 1} / ${totalImages}`;
+            }
+            lightbox.querySelector('.gt-lb-prev').addEventListener('click', () => goTo(current - 1));
+            lightbox.querySelector('.gt-lb-next').addEventListener('click', () => goTo(current + 1));
+            document.addEventListener('keydown', e => { if (!lightbox.classList.contains('open')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowRight') goTo(current - 1); if (e.key === 'ArrowLeft') goTo(current + 1); });
 
             grid.addEventListener('click', e => {
                 const card = e.target.closest('.gt-card');
