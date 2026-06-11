@@ -1136,18 +1136,34 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 
     // --- Influencers Section ---
     const influencerAccounts = [
-        { nameAr: 'بدر العساكر', handle: '@badr_alasaker', platform: 'twitter', url: 'https://twitter.com/badr_alasaker', bio: 'محتوى في ريادة الأعمال والتطوير الذاتي والتقنية.', field: 'ريادة أعمال', color: '#1da1f2' },
-        { nameAr: 'محمد الغامدي', handle: '@m_alghamdi_tech', platform: 'twitter', url: 'https://twitter.com/m_alghamdi_tech', bio: 'متخصص في الأمن السيبراني ومشاركة المحتوى التقني.', field: 'أمن سيبراني', color: '#1da1f2' },
-        { nameAr: 'Fireship', handle: '@fireship_dev', platform: 'youtube', url: 'https://www.youtube.com/@Fireship', bio: 'شروحات برمجية مكثفة وسريعة لمطوري الويب.', field: 'برمجة', color: '#ff0000' },
-        { nameAr: 'NetworkChuck', handle: '@NetworkChuck', platform: 'youtube', url: 'https://www.youtube.com/@NetworkChuck', bio: 'شبكات وسيبراني وكلاود بأسلوب ممتع ومحفز.', field: 'شبكات & سيبراني', color: '#ff0000' },
-        { nameAr: 'TechWorld with Nana', handle: '@TechWorldwithNana', platform: 'youtube', url: 'https://www.youtube.com/@TechWorldwithNana', bio: 'DevOps وكلاود وـ Kubernetes بأوضح شرح.', field: 'DevOps & Cloud', color: '#ff0000' },
-        { nameAr: 'فهد الشمري', handle: '@fahad_tech', platform: 'twitter', url: 'https://twitter.com/fahad_tech', bio: 'محتوى تقني ومهني موجه للسوق السعودي.', field: 'تقنية', color: '#1da1f2' },
-        { nameAr: 'Traversy Media', handle: '@traversymedia', platform: 'youtube', url: 'https://www.youtube.com/@TraversyMedia', bio: 'دورات تطوير ويب شاملة من المبتدئ للمحترف.', field: 'تطوير ويب', color: '#ff0000' },
-        { nameAr: 'David Bombal', handle: '@davidbombal', platform: 'youtube', url: 'https://www.youtube.com/@davidbombal', bio: 'شبكات وـ CCNA وـ ethical hacking.', field: 'شبكات', color: '#ff0000' },
-        { nameAr: 'سارة الحربي', handle: '@sara_tech_sa', platform: 'linkedin', url: 'https://www.linkedin.com/in/sara-tech-sa', bio: 'مطورة برمجيات تشارك تجربتها في سوق التقنية السعودي.', field: 'برمجة', color: '#0077b5' },
-        { nameAr: 'Kevin Stratvert', handle: '@KevinStratvert', platform: 'youtube', url: 'https://www.youtube.com/@KevinStratvert', bio: 'أدوات Microsoft وـ AI وإنتاجية العمل.', field: 'أدوات مهنية', color: '#ff0000' },
-        { nameAr: 'Jeff Su', handle: '@JeffSu', platform: 'youtube', url: 'https://www.youtube.com/@JeffSu', bio: 'نصائح مهنية وبناء السيرة الذاتية والتفوق في العمل.', field: 'تطوير مهني', color: '#ff0000' },
-        { nameAr: 'Lenny Rachitsky', handle: '@lennysan', platform: 'linkedin', url: 'https://www.linkedin.com/in/lennyrachitsky/', bio: 'مدير منتج سابق في Airbnb، محتوى Product Management.', field: 'إدارة منتجات', color: '#0077b5' }
+        { nameAr: 'سَ | وظائف', handle: '@S2_JOB2', platform: 'twitter', url: 'https://x.com/s2_job2', bio: 'أخصائي استقطاب وعضو معتمد في اتحاد التوظيف البريطاني (REC).', field: 'توظيف' },
+        { nameAr: 'أنس إبراهيم', handle: '@anas_ibrahim97', platform: 'twitter', url: 'https://x.com/anas_ibrahim97', bio: 'مختص في إدارة وتطوير قنوات اليوتيوب — أحوّل قناتك إلى علامة تجارية ومصدر دخل حقيقي.', field: 'يوتيوب & محتوى' },
+        { nameAr: 'خطاف الخطاف', handle: '@khattaf1', platform: 'twitter', url: 'https://x.com/khattaf1', bio: 'شريك إعلاني معتمد من Google Ads ومستشار تسويق، حائز جائزة الأميرة صيتة في المعرفة الرقمية.', field: 'تسويق رقمي' },
+        { nameAr: 'ترند الأخبار | Trendnews24', handle: '@trendnews_24', platform: 'twitter', url: 'https://x.com/trendnews_24', bio: 'منصة ترند الأخبار ترصد جميع الأخبار الرائجة في السعودية والعالم.', field: 'أخبار & ترند' },
+        { nameAr: 'أحمد الزهراني', handle: '@ENGAALZAHRANI', platform: 'twitter', url: 'https://x.com/engaalzahrani', bio: 'تمكين قادة المستقبل في الموارد البشرية — مؤسس منصة عالم الموارد البشرية.', field: 'موارد بشرية' },
+        { nameAr: 'كورسات', handle: '@c_4et', platform: 'twitter', url: 'https://x.com/c_4et', bio: 'حساب مهتم بنشر مقالات في برمجة الويب وكورسات مجانية في مجال الويب.', field: 'برمجة ويب' },
+        { nameAr: 'ترافس TRAVIS', handle: '@iirode0', platform: 'twitter', url: 'https://x.com/iirode0', bio: 'ينقل أخبار وتغطيات ومنوعات من شتى بقاع العالم.', field: 'أخبار & منوعات' },
+        { nameAr: 'عبير الحسن', handle: '@AbeerAlhasan', platform: 'twitter', url: 'https://x.com/abeeralhasan', bio: 'رائدة أعمال ومستشارة تسويق، مؤثرة رقمية تدرب في التقنية وتقود تطوير الأعمال.', field: 'ريادة أعمال' },
+        { nameAr: 'سعود في السوق الأمريكي', handle: '@s_usa2001', platform: 'twitter', url: 'https://x.com/s_usa2001', bio: 'مهتم ومستثمر في السوق الأمريكي — محتوى استثماري متخصص.', field: 'استثمار' },
+        { nameAr: 'البرمجة للجميع', handle: '@p_4all', platform: 'twitter', url: 'https://x.com/p_4all', bio: 'فريق متخصص بتقديم خدمات البرمجة وتطوير وتصميم مواقع الويب.', field: 'برمجة ويب' },
+        { nameAr: 'مبارك آل مبارك', handle: '@Mbk8g', platform: 'twitter', url: 'https://x.com/mbk8g', bio: 'ينشر ويترجم كل جديد وحصري من الأخبار المحلية والعالمية.', field: 'أخبار' },
+        { nameAr: 'فهد بن مبارك HR', handle: '@fhd20hm', platform: 'twitter', url: 'https://x.com/fhd20hm', bio: 'مختص بصياغة عقود العمل والامتثال لنظامها وتبسيط تعقيدات العلاقة العمالية والموارد البشرية.', field: 'موارد بشرية' },
+        { nameAr: 'دليلك للآيلتس', handle: '@Dalilk4ielts', platform: 'twitter', url: 'https://x.com/dalilk4ielts', bio: 'مدرب في الآيلتس والتطوير المهني، عضو في الاتحاد الدولي للتدريب ICF.', field: 'تطوير مهني' },
+        { nameAr: 'عماد الشريف', handle: '@3madAlshareef', platform: 'twitter', url: 'https://x.com/3madalshareef', bio: 'مهتم بشؤون التعليم والوظائف.', field: 'توظيف & تعليم' },
+        { nameAr: 'مصعب المرشدي', handle: '@malmarshedi', platform: 'twitter', url: 'https://x.com/malmarshedi', bio: 'مستثمر متخصص في قطاع صناعة المستحضرات الطبية والتجميلية والأجهزة الطبية.', field: 'استثمار' },
+        { nameAr: 'أبو يزن', handle: '@AymanBasha', platform: 'twitter', url: 'https://x.com/aymanbasha', bio: 'متخصص في التجارة الإلكترونية وخدمات شراء واستيراد وشحن من الصين.', field: 'تجارة إلكترونية' },
+        { nameAr: 'تعلم إكسل مجاناً', handle: '@ExcelAr22', platform: 'twitter', url: 'https://x.com/excelar22', bio: 'كل ما تحتاج معرفته لاحتراف إكسل — متاح مجاناً.', field: 'مهارات مكتبية' },
+        { nameAr: 'سعيد عبدالجبار', handle: '@Saeed_AJ', platform: 'twitter', url: 'https://x.com/saeed_aj', bio: 'مستثمر ومهتم بمواضيع أسواق المال والأعمال.', field: 'استثمار & مال' },
+        { nameAr: 'بندر المسند', handle: '@EcoOneE', platform: 'twitter', url: 'https://x.com/ecoonee', bio: 'كاتب محترف، مؤسس وكالة محتوى ابداع، ومختص بالتسويق وصناعة المحتوى.', field: 'تسويق & محتوى' },
+        { nameAr: 'محمد بن دليم القحطاني', handle: '@DrMDMQ', platform: 'twitter', url: 'https://x.com/drmdmq', bio: 'مفكر اقتصادي متخصص في اقتصاد المستقبل والتحولات العالمية.', field: 'اقتصاد' },
+        { nameAr: 'وافي بن عبدالله', handle: '@Dr_Wafy', platform: 'twitter', url: 'https://x.com/dr_wafy', bio: 'أكاديمي، دكتور في اللغويات الحاسوبية.', field: 'أكاديمي & تقنية' },
+        { nameAr: 'منصة ترس', handle: '@Taras_saudi', platform: 'twitter', url: 'https://x.com/taras_saudi', bio: 'وظائف وأكثر — منصة سعودية لمتابعة فرص العمل.', field: 'توظيف' },
+        { nameAr: 'عبدالعزيز المهباش', handle: '@AAlmehbash', platform: 'twitter', url: 'https://x.com/aalmehbash', bio: 'مقدم برامج وكاتب إعلامي مختص في الموارد البشرية.', field: 'موارد بشرية' },
+        { nameAr: 'إياد الحمر', handle: '@Eyaaaad', platform: 'twitter', url: 'https://x.com/eyaaaad', bio: 'ينشر غرائب الأخبار والمقاطع والدراسات العالمية التي قد لا ينشرها الإعلام.', field: 'أخبار & ثقافة' },
+        { nameAr: 'رضا العيدروس', handle: '@Reda_Alidarous', platform: 'twitter', url: 'https://x.com/reda_alidarous', bio: 'مستشار مالي، خبرة مصرفية ومالية 26 عاماً، خبير في التحليل والتقييم الائتماني.', field: 'مال & استثمار' },
+        { nameAr: 'عبدالمجيد', handle: '@Abdulmajeedful', platform: 'twitter', url: 'https://x.com/abdulmajeedful', bio: 'ماجستير موارد بشرية، بكالوريوس إدارة أعمال.', field: 'موارد بشرية' },
+        { nameAr: 'ثامر الغالي', handle: '@i3rab', platform: 'twitter', url: 'https://x.com/i3rab', bio: 'نبحر في عالم السياحة والتقنية.', field: 'سياحة & تقنية' },
+        { nameAr: 'ماجد المقاطي', handle: '@malmuqti', platform: 'twitter', url: 'https://x.com/malmuqti', bio: 'مهتم بالاستثمار وأسواق المال.', field: 'استثمار' }
     ];
 
     const platformIcons = {
