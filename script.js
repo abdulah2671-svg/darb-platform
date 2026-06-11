@@ -683,26 +683,25 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
   }
   .page {
     width: 210mm;
-    min-height: 297mm;
-    padding: 18mm 16mm;
+    padding: 16mm 18mm;
     margin: 0 auto;
   }
-  .name { font-size: 20pt; font-weight: 700; text-align: center; margin-bottom: 4px; }
+  .name { font-size: 19pt; font-weight: 700; text-align: center; margin-bottom: 4px; }
   .role { font-size: 11pt; font-weight: 700; text-align: center; color: #374151; margin-bottom: 4px; }
-  .contact { font-size: 9pt; text-align: center; color: #4b5563; padding-bottom: 7px; border-bottom: 2px solid #111827; margin-bottom: 14px; }
-  .sec { margin-top: 13px; page-break-inside: avoid; break-inside: avoid; }
+  .contact { font-size: 9pt; text-align: center; color: #4b5563; padding-bottom: 7px; border-bottom: 2px solid #111827; margin-bottom: 12px; }
+  .sec { margin-top: 11px; page-break-inside: avoid; break-inside: avoid; }
   .sec-title {
     font-size: 9.5pt; font-weight: 700; color: #111827;
     border-bottom: 1px solid #d1d5db;
-    padding-bottom: 3px; margin-bottom: 6px;
+    padding-bottom: 3px; margin-bottom: 5px;
     letter-spacing: 0.3px;
   }
   ul { padding-${isAr ? 'right' : 'left'}: 16px; }
-  li { font-size: 9.5pt; line-height: 1.5; margin-bottom: 3px; }
+  li { font-size: 9.5pt; line-height: 1.5; margin-bottom: 2px; }
   @media print {
     body { background: #fff; }
-    .page { width: 100%; padding: 12mm 14mm; margin: 0; }
-    @page { size: A4; margin: 0; }
+    .page { width: 100%; margin: 0; padding: 14mm 16mm; }
+    @page { size: A4; margin: 10mm 12mm; }
   }
 </style>
 </head>
