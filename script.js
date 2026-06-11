@@ -627,104 +627,108 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 
     function exportAsPdf(text, originalName) {
         const data = currentResumeData || createResumeData(text, 'Technical Role', extractKeywords(text), []);
-        const isAr = data.language === 'ar';
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
-        const pageW = doc.internal.pageSize.getWidth();
-        const pageH = doc.internal.pageSize.getHeight();
-        const marginL = 48;
-        const marginR = 48;
-        const contentW = pageW - marginL - marginR;
-        let y = 52;
-
-        function safeText(str) {
-            if (!str) return '';
-            return String(str).replace(/[\u202A-\u202E\u200F\u200E]/g, '');
-        }
-
-        function addWrappedText(txt, fontSize, isBold, color, align, maxW) {
-            doc.setFontSize(fontSize);
-            doc.setFont('helvetica', isBold ? 'bold' : 'normal');
-            doc.setTextColor(color[0], color[1], color[2]);
-            const lines = doc.splitTextToSize(safeText(txt), maxW);
-            const lineH = fontSize * 1.35;
-            lines.forEach(line => {
-                if (y + lineH > pageH - 40) {
-                    doc.addPage();
-                    y = 52;
-                }
-                if (align === 'center') {
-                    doc.text(line, pageW / 2, y, { align: 'center' });
-                } else {
-                    doc.text(line, marginL, y);
-                }
-                y += lineH;
-            });
-            return lines.length * lineH;
-        }
-
-        function addSectionHeader(title) {
-            if (y + 20 > pageH - 40) { doc.addPage(); y = 52; }
-            y += 10;
-            doc.setFontSize(10);
-            doc.setFont('helvetica', 'bold');
-            doc.setTextColor(17, 24, 39);
-            doc.text(safeText(title), marginL, y);
-            y += 3;
-            doc.setDrawColor(17, 24, 39);
-            doc.setLineWidth(0.8);
-            doc.line(marginL, y, pageW - marginR, y);
-            y += 10;
-        }
-
-        function addBulletItem(item) {
-            doc.setFontSize(10.5);
-            doc.setFont('helvetica', 'normal');
-            doc.setTextColor(31, 41, 55);
-            const bullet = '- ';
-            const indent = 10;
-            const lines = doc.splitTextToSize(safeText(item), contentW - indent);
-            const lineH = 10.5 * 1.35;
-            lines.forEach((line, i) => {
-                if (y + lineH > pageH - 40) { doc.addPage(); y = 52; }
-                doc.text((i === 0 ? bullet : '  ') + line, marginL + indent, y);
-                y += lineH;
-            });
-            y += 2;
-        }
-
         const labels = getResumeSectionLabels(data.language);
+        const isAr = data.language === 'ar';
+        const dir = isAr ? 'rtl' : 'ltr';
+        const textAlign = isAr ? 'right' : 'left';
+        const fontFamily = isAr
+            ? "'Noto Sans Arabic', 'Arial', sans-serif"
+            : "'Arial', sans-serif";
 
-        addWrappedText(data.name, 20, true, [17, 24, 39], 'center', contentW);
-        y += 2;
-        addWrappedText(data.role, 12, true, [55, 65, 81], 'center', contentW);
-        y += 2;
-        addWrappedText(data.contact, 10, false, [75, 85, 99], 'center', contentW);
-        y += 4;
-        doc.setDrawColor(17, 24, 39);
-        doc.setLineWidth(1.2);
-        doc.line(marginL, y, pageW - marginR, y);
-        y += 14;
+        function esc(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
 
-        const sections = [
-            [labels.objective, data.objective ? [data.objective] : []],
-            [labels.education, data.education],
-            [labels.experience, data.experience],
-            [labels.courses, data.courses],
-            [labels.skills, data.technicalSkills],
-            [labels.languages, data.languages],
-            [labels.reference, data.reference]
-        ];
-
-        sections.forEach(([title, items]) => {
+        function sectionHtml(title, items) {
             const list = Array.isArray(items) ? items.filter(Boolean) : (items ? [items] : []);
-            if (!list.length) return;
-            addSectionHeader(title);
-            list.forEach(item => addBulletItem(item));
-        });
+            if (!list.length) return '';
+            const rows = list.map(item => `<li>${esc(item)}</li>`).join('');
+            return `<div class="sec">
+  <div class="sec-title">${esc(title)}</div>
+  <ul>${rows}</ul>
+</div>`;
+        }
 
-        const fileName = originalName.replace(/\.(pdf|html|docx|doc)$/i, '') + '-enhanced.pdf';
-        doc.save(fileName);
+        const sectionsHtml = [
+            sectionHtml(labels.objective, data.objective ? [data.objective] : []),
+            sectionHtml(labels.education, data.education),
+            sectionHtml(labels.experience, data.experience),
+            sectionHtml(labels.courses, data.courses),
+            sectionHtml(labels.skills, data.technicalSkills),
+            sectionHtml(labels.languages, data.languages),
+            sectionHtml(labels.reference, data.reference)
+        ].join('');
+
+        const baseName = originalName.replace(/\.(pdf|html|docx|doc)$/i, '');
+
+        const html = `<!DOCTYPE html>
+<html lang="${isAr ? 'ar' : 'en'}" dir="${dir}">
+<head>
+<meta charset="UTF-8">
+<title>${esc(baseName)}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: ${fontFamily};
+    direction: ${dir};
+    text-align: ${textAlign};
+    color: #111827;
+    background: #fff;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 18mm 16mm;
+    margin: 0 auto;
+  }
+  .name { font-size: 20pt; font-weight: 700; text-align: center; margin-bottom: 4px; }
+  .role { font-size: 11pt; font-weight: 700; text-align: center; color: #374151; margin-bottom: 4px; }
+  .contact { font-size: 9pt; text-align: center; color: #4b5563; padding-bottom: 7px; border-bottom: 2px solid #111827; margin-bottom: 14px; }
+  .sec { margin-top: 13px; page-break-inside: avoid; break-inside: avoid; }
+  .sec-title {
+    font-size: 9.5pt; font-weight: 700; color: #111827;
+    border-bottom: 1px solid #d1d5db;
+    padding-bottom: 3px; margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+  ul { padding-${isAr ? 'right' : 'left'}: 16px; }
+  li { font-size: 9.5pt; line-height: 1.5; margin-bottom: 3px; }
+  @media print {
+    body { background: #fff; }
+    .page { width: 100%; padding: 12mm 14mm; margin: 0; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="name">${esc(data.name)}</div>
+  <div class="role">${esc(data.role)}</div>
+  <div class="contact">${esc(data.contact)}</div>
+  ${sectionsHtml}
+</div>
+<script>
+  window.onload = function() {
+    setTimeout(function() { window.print(); }, 600);
+  };
+<\/script>
+</body>
+</html>`;
+
+        const win = window.open('', '_blank');
+        if (win) {
+            win.document.write(html);
+            win.document.close();
+        } else {
+            const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+            downloadBlob(blob, baseName + '-resume.html');
+        }
     }
 
     async function exportAsDocx(text, originalName) {
