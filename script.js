@@ -178,9 +178,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function cleanResumeLines(lines, limit = 8) {
         const seen = new Set();
-        return lines
-            .map(line => line.replace(/\s+/g, ' ').replace(/^[-•]\s*/, '').trim())
-            .filter(line => line.length > 2 && line.length < 180)
+        const expanded = [];
+        lines.forEach(line => {
+            const cleaned = line.replace(/\s+/g, ' ').replace(/^[-•*]\s*/, '').trim();
+            if (cleaned.length > 120) {
+                cleaned.split(/(?<=\.)\s+|\s{2,}/).forEach(part => {
+                    const p = part.replace(/^[-•*]\s*/, '').trim();
+                    if (p.length > 2) expanded.push(p);
+                });
+            } else if (cleaned.length > 2) {
+                expanded.push(cleaned);
+            }
+        });
+        return expanded
+            .filter(line => line.length < 200)
             .filter(line => {
                 const key = normalizeText(line);
                 if (seen.has(key)) return false;
@@ -238,7 +249,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function splitUserList(value) {
-        return cleanResumeLines((value || '').split(/\n|،|,/), 20);
+        if (!value) return [];
+        const raw = String(value)
+            .replace(/–|—/g, '\n')
+            .replace(/([A-Za-z\u0600-\u06FF]{3,}):\s/g, '\n$1: ')
+            .split(/\n|،|,|;/);
+        return cleanResumeLines(raw, 20);
     }
 
     function readUserInfo() {
@@ -671,37 +687,37 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 <meta charset="UTF-8">
 <title>${esc(baseName)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Arial&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: auto; background: #fff; }
   body {
     font-family: ${fontFamily};
     direction: ${dir};
     text-align: ${textAlign};
     color: #111827;
-    background: #fff;
   }
   .page {
     width: 210mm;
-    padding: 16mm 18mm;
+    padding: 14mm 16mm 10mm 16mm;
     margin: 0 auto;
   }
-  .name { font-size: 19pt; font-weight: 700; text-align: center; margin-bottom: 4px; }
-  .role { font-size: 11pt; font-weight: 700; text-align: center; color: #374151; margin-bottom: 4px; }
-  .contact { font-size: 9pt; text-align: center; color: #4b5563; padding-bottom: 7px; border-bottom: 2px solid #111827; margin-bottom: 12px; }
-  .sec { margin-top: 11px; page-break-inside: avoid; break-inside: avoid; }
+  .name { font-size: 18pt; font-weight: 700; text-align: center; margin-bottom: 3px; line-height: 1.2; }
+  .role { font-size: 10.5pt; font-weight: 700; text-align: center; color: #374151; margin-bottom: 3px; }
+  .contact { font-size: 8.5pt; text-align: center; color: #4b5563; padding-bottom: 6px; border-bottom: 2px solid #111827; margin-bottom: 10px; line-height: 1.5; }
+  .sec { margin-top: 10px; page-break-inside: avoid; break-inside: avoid; }
   .sec-title {
-    font-size: 9.5pt; font-weight: 700; color: #111827;
+    font-size: 9pt; font-weight: 700; color: #111827;
     border-bottom: 1px solid #d1d5db;
     padding-bottom: 3px; margin-bottom: 5px;
-    letter-spacing: 0.3px;
+    text-transform: uppercase; letter-spacing: 0.4px;
   }
-  ul { padding-${isAr ? 'right' : 'left'}: 16px; }
-  li { font-size: 9.5pt; line-height: 1.5; margin-bottom: 2px; }
+  ul { padding-${isAr ? 'right' : 'left'}: 15px; margin: 0; }
+  li { font-size: 9pt; line-height: 1.45; margin-bottom: 2px; }
   @media print {
-    body { background: #fff; }
-    .page { width: 100%; margin: 0; padding: 14mm 16mm; }
-    @page { size: A4; margin: 10mm 12mm; }
+    html, body { height: auto; background: #fff; }
+    .page { width: 100%; margin: 0; padding: 0; }
+    @page { size: A4 portrait; margin: 14mm 16mm 14mm 16mm; }
   }
 </style>
 </head>
@@ -713,9 +729,9 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
   ${sectionsHtml}
 </div>
 <script>
-  window.onload = function() {
-    setTimeout(function() { window.print(); }, 600);
-  };
+  document.fonts.ready.then(function() {
+    window.print();
+  });
 <\/script>
 </body>
 </html>`;
