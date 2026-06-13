@@ -729,19 +729,29 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
                 windowWidth: A4_W_PX
             });
 
-            const imgData = canvas.toDataURL('image/jpeg', 0.97);
             const imgW = canvas.width;
             const imgH = canvas.height;
 
-            const pdfPageH = Math.round((A4_H_PX / A4_W_PX) * imgW);
-            const totalPages = Math.ceil(imgH / pdfPageH);
+            // A4 page height in canvas pixels (at scale:2)
+            const a4PageH = Math.round((A4_H_PX / A4_W_PX) * imgW);
+            const totalPages = Math.ceil(imgH / a4PageH);
 
-            const pdf = new jsPDF({ unit: 'px', format: [imgW / 2, pdfPageH / 2], orientation: 'portrait' });
+            // First page height = actual content height (capped at one A4 if fits)
+            // Each page gets its real slice height so no blank padding is added
+            const pdf = new jsPDF({
+                unit: 'px',
+                format: [imgW / 2, Math.min(imgH, a4PageH) / 2],
+                orientation: 'portrait'
+            });
 
             for (let i = 0; i < totalPages; i++) {
-                if (i > 0) pdf.addPage();
-                const sy = i * pdfPageH;
-                const sliceH = Math.min(pdfPageH, imgH - sy);
+                if (i > 0) {
+                    const sy = i * a4PageH;
+                    const sliceH = Math.min(a4PageH, imgH - sy);
+                    pdf.addPage([imgW / 2, sliceH / 2]);
+                }
+                const sy = i * a4PageH;
+                const sliceH = Math.min(a4PageH, imgH - sy);
                 const pageCanvas = document.createElement('canvas');
                 pageCanvas.width = imgW;
                 pageCanvas.height = sliceH;
