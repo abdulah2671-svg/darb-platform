@@ -690,17 +690,19 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Arial&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: auto; background: #fff; }
+  html { background: #fff; }
   body {
     font-family: ${fontFamily};
     direction: ${dir};
     text-align: ${textAlign};
     color: #111827;
+    background: #fff;
+    display: inline-block;
+    width: 210mm;
   }
   .page {
     width: 210mm;
     padding: 14mm 16mm 10mm 16mm;
-    margin: 0 auto;
   }
   .name { font-size: 18pt; font-weight: 700; text-align: center; margin-bottom: 3px; line-height: 1.2; }
   .role { font-size: 10.5pt; font-weight: 700; text-align: center; color: #374151; margin-bottom: 3px; }
@@ -715,8 +717,8 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
   ul { padding-${isAr ? 'right' : 'left'}: 15px; margin: 0; }
   li { font-size: 9pt; line-height: 1.45; margin-bottom: 2px; }
   @media print {
-    html, body { height: auto; background: #fff; }
-    .page { width: 100%; margin: 0; padding: 0; }
+    html, body { display: block; width: 100%; background: #fff; }
+    .page { width: 100%; padding: 0; }
     @page { size: A4 portrait; margin: 14mm 16mm 14mm 16mm; }
   }
 </style>
