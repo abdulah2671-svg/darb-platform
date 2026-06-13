@@ -252,8 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!value) return [];
         const raw = String(value)
             .replace(/–|—/g, '\n')
-            .replace(/([A-Za-z\u0600-\u06FF]{3,}):\s/g, '\n$1: ')
-            .split(/\n|،|,|;/);
+            .split(/\n|،|;/);
         return cleanResumeLines(raw, 20);
     }
 
@@ -297,7 +296,8 @@ document.addEventListener('DOMContentLoaded', () => {
             education = userEducation;
         } else if (userInfo.college || userInfo.major || userInfo.gpa) {
             education = [
-                [userInfo.major, userInfo.college].filter(Boolean).join(' | '),
+                userInfo.major ? userInfo.major : '',
+                userInfo.college ? userInfo.college : '',
                 userInfo.gpa ? `GPA: ${userInfo.gpa}` : ''
             ].filter(Boolean);
         }
@@ -305,15 +305,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const languages = cleanResumeLines(collectSectionLines(cv, ['languages', 'اللغات'], ['arabic', 'english', 'عربي', 'انجليزي']), 4);
         const rawExperience = cleanResumeLines(userExperience.length ? userExperience : collectSectionLines(cv, ['experience', 'experiences', 'الخبرات'], ['internship', 'training', 'work', 'project', 'company', 'تدريب', 'عمل']), 4);
         const experienceBullets = rawExperience.slice(0, 4);
+        const emailVal = userInfo.email || contact.email || '';
+        const linkedinVal = userInfo.linkedin || '';
         return {
             language: userInfo.surveyLanguage || 'en',
             name: (userInfo.fullName || contact.name || 'RESUME').toUpperCase(),
             role: jobTitle,
+            email: emailVal,
+            linkedin: linkedinVal,
             contact: [
-                userInfo.email || contact.email,
+                emailVal,
                 userInfo.phone || contact.phone,
                 userInfo.region,
-                userInfo.linkedin ? `LinkedIn: ${userInfo.linkedin}` : ''
+                linkedinVal ? `LinkedIn: ${linkedinVal}` : ''
             ].filter(Boolean).join(' | '),
             objective: userInfo.careerObjective,
             education,
@@ -682,15 +686,16 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
         const baseName = originalName.replace(/\.(pdf|html|docx|doc)$/i, '');
 
         function buildContactHtml(contactStr) {
+            const emailVal = data.email || '';
+            const linkedinVal = data.linkedin || '';
             return contactStr.split(' | ').map(part => {
                 const trimmed = part.trim();
-                if (/^[\w.+-]+@[\w-]+\.[a-z]{2,}$/i.test(trimmed)) {
-                    return `<a href="mailto:${trimmed}" style="color:#111827;text-decoration:none;">${trimmed}</a>`;
+                if (emailVal && trimmed === emailVal) {
+                    return `<a href="mailto:${emailVal}" style="color:#111827;text-decoration:none;">${esc(emailVal)}</a>`;
                 }
-                if (/linkedin/i.test(trimmed)) {
-                    const url = trimmed.replace(/^LinkedIn:\s*/i, '').trim();
-                    const href = url.startsWith('http') ? url : `https://${url}`;
-                    return `<a href="${href}" target="_blank" style="color:#111827;text-decoration:none;">${trimmed}</a>`;
+                if (linkedinVal && trimmed.includes(linkedinVal)) {
+                    const href = linkedinVal.startsWith('http') ? linkedinVal : `https://${linkedinVal}`;
+                    return `<a href="${href}" target="_blank" style="color:#111827;text-decoration:none;">${esc(trimmed)}</a>`;
                 }
                 return esc(trimmed);
             }).join(' <span style="color:#9ca3af;">|</span> ');
