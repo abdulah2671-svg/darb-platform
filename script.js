@@ -645,33 +645,34 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
         return html;
     }
 
-    function exportAsPdf(text, originalName) {
+    async function exportAsPdf(text, originalName) {
         const data = currentResumeData || createResumeData(text, 'Technical Role', extractKeywords(text), []);
         const labels = getResumeSectionLabels(data.language);
         const isAr = data.language === 'ar';
         const dir = isAr ? 'rtl' : 'ltr';
-        const textAlign = isAr ? 'right' : 'left';
-        const fontFamily = isAr
-            ? "'Noto Sans Arabic', 'Arial', sans-serif"
-            : "'Arial', sans-serif";
+        const baseName = originalName.replace(/\.(pdf|html|docx|doc)$/i, '');
 
         function esc(str) {
             if (!str) return '';
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;');
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         }
 
         function sectionHtml(title, items) {
             const list = Array.isArray(items) ? items.filter(Boolean) : (items ? [items] : []);
             if (!list.length) return '';
             const rows = list.map(item => `<li>${esc(item)}</li>`).join('');
-            return `<div class="sec">
-  <div class="sec-title">${esc(title)}</div>
-  <ul>${rows}</ul>
-</div>`;
+            return `<div class="pdf-sec"><div class="pdf-sec-title">${esc(title)}</div><ul>${rows}</ul></div>`;
         }
+
+        const contactParts = (data.contact || '').split(' | ').map(part => {
+            const trimmed = part.trim();
+            if (data.email && trimmed === data.email) return `<a href="mailto:${data.email}">${esc(data.email)}</a>`;
+            if (data.linkedin && trimmed.includes(data.linkedin)) {
+                const href = data.linkedin.startsWith('http') ? data.linkedin : `https://${data.linkedin}`;
+                return `<a href="${href}">${esc(trimmed)}</a>`;
+            }
+            return esc(trimmed);
+        }).join(' | ');
 
         const sectionsHtml = [
             sectionHtml(labels.objective, data.objective ? [data.objective] : []),
@@ -683,88 +684,75 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
             sectionHtml(labels.reference, data.reference)
         ].join('');
 
-        const baseName = originalName.replace(/\.(pdf|html|docx|doc)$/i, '');
+        const fontFamily = isAr ? "'Noto Sans Arabic', Arial, sans-serif" : "Arial, sans-serif";
 
-        function buildContactHtml(contactStr) {
-            const emailVal = data.email || '';
-            const linkedinVal = data.linkedin || '';
-            return contactStr.split(' | ').map(part => {
-                const trimmed = part.trim();
-                if (emailVal && trimmed === emailVal) {
-                    return `<a href="mailto:${emailVal}" style="color:#111827;text-decoration:none;">${esc(emailVal)}</a>`;
-                }
-                if (linkedinVal && trimmed.includes(linkedinVal)) {
-                    const href = linkedinVal.startsWith('http') ? linkedinVal : `https://${linkedinVal}`;
-                    return `<a href="${href}" target="_blank" style="color:#111827;text-decoration:none;">${esc(trimmed)}</a>`;
-                }
-                return esc(trimmed);
-            }).join(' <span style="color:#9ca3af;">|</span> ');
-        }
+        const wrapper = document.createElement('div');
+        wrapper.id = 'pdf-render-wrapper';
+        wrapper.style.cssText = `
+            position:fixed; left:-9999px; top:0; z-index:-1;
+            width:794px; background:#fff;
+            font-family:${fontFamily}; direction:${dir};
+            text-align:${isAr ? 'right' : 'left'}; color:#111827;
+            box-sizing:border-box; padding:52px 60px 48px 60px;
+        `;
+        wrapper.innerHTML = `
+            <style>
+                #pdf-render-wrapper * { box-sizing:border-box; margin:0; padding:0; }
+                #pdf-render-wrapper .pdf-name { font-size:22px; font-weight:800; text-align:center; letter-spacing:0.3px; margin-bottom:4px; }
+                #pdf-render-wrapper .pdf-role { font-size:13px; font-weight:700; text-align:center; color:#374151; margin-bottom:4px; }
+                #pdf-render-wrapper .pdf-contact { font-size:10px; text-align:center; color:#4b5563; padding-bottom:8px; border-bottom:2px solid #111827; margin-bottom:12px; line-height:1.6; }
+                #pdf-render-wrapper .pdf-contact a { color:#1d4ed8; text-decoration:none; }
+                #pdf-render-wrapper .pdf-sec { margin-top:12px; }
+                #pdf-render-wrapper .pdf-sec-title { font-size:10.5px; font-weight:800; color:#111827; border-bottom:1px solid #d1d5db; padding-bottom:3px; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+                #pdf-render-wrapper ul { padding-${isAr ? 'right' : 'left'}:16px; }
+                #pdf-render-wrapper li { font-size:10.5px; line-height:1.5; margin-bottom:3px; }
+            </style>
+            <div class="pdf-name">${esc(data.name)}</div>
+            <div class="pdf-role">${esc(data.role)}</div>
+            <div class="pdf-contact">${contactParts}</div>
+            ${sectionsHtml}
+        `;
 
-        const html = `<!DOCTYPE html>
-<html lang="${isAr ? 'ar' : 'en'}" dir="${dir}">
-<head>
-<meta charset="UTF-8">
-<title>${esc(baseName)}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Arial&display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { background: #fff; }
-  body {
-    font-family: ${fontFamily};
-    direction: ${dir};
-    text-align: ${textAlign};
-    color: #111827;
-    background: #fff;
-    display: inline-block;
-    width: 210mm;
-  }
-  .page {
-    width: 210mm;
-    padding: 14mm 16mm 10mm 16mm;
-  }
-  .name { font-size: 18pt; font-weight: 700; text-align: center; margin-bottom: 3px; line-height: 1.2; }
-  .role { font-size: 10.5pt; font-weight: 700; text-align: center; color: #374151; margin-bottom: 3px; }
-  .contact { font-size: 8.5pt; text-align: center; color: #4b5563; padding-bottom: 6px; border-bottom: 2px solid #111827; margin-bottom: 10px; line-height: 1.5; }
-  .sec { margin-top: 10px; page-break-inside: avoid; break-inside: avoid; }
-  .sec-title {
-    font-size: 9pt; font-weight: 700; color: #111827;
-    border-bottom: 1px solid #d1d5db;
-    padding-bottom: 3px; margin-bottom: 5px;
-    text-transform: uppercase; letter-spacing: 0.4px;
-  }
-  ul { padding-${isAr ? 'right' : 'left'}: 15px; margin: 0; }
-  li { font-size: 9pt; line-height: 1.45; margin-bottom: 2px; }
-  @media print {
-    html, body { display: block; width: 100%; background: #fff; }
-    .page { width: 100%; padding: 0; }
-    @page { size: A4 portrait; margin: 14mm 16mm 14mm 16mm; }
-  }
-</style>
-</head>
-<body>
-<div class="page">
-  <div class="name">${esc(data.name)}</div>
-  <div class="role">${esc(data.role)}</div>
-  <div class="contact">${buildContactHtml(data.contact)}</div>
-  ${sectionsHtml}
-</div>
-<script>
-  document.fonts.ready.then(function() {
-    window.print();
-  });
-<\/script>
-</body>
-</html>`;
+        document.body.appendChild(wrapper);
 
-        const win = window.open('', '_blank');
-        if (win) {
-            win.document.write(html);
-            win.document.close();
-        } else {
-            const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-            downloadBlob(blob, baseName + '-resume.html');
+        const A4_W_PX = 794;
+        const A4_H_PX = 1123;
+        const { jsPDF } = window.jspdf;
+
+        try {
+            await document.fonts.ready;
+            const canvas = await html2canvas(wrapper, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#ffffff',
+                width: A4_W_PX,
+                windowWidth: A4_W_PX
+            });
+
+            const imgData = canvas.toDataURL('image/jpeg', 0.97);
+            const imgW = canvas.width;
+            const imgH = canvas.height;
+
+            const pdfPageH = Math.round((A4_H_PX / A4_W_PX) * imgW);
+            const totalPages = Math.ceil(imgH / pdfPageH);
+
+            const pdf = new jsPDF({ unit: 'px', format: [imgW / 2, pdfPageH / 2], orientation: 'portrait' });
+
+            for (let i = 0; i < totalPages; i++) {
+                if (i > 0) pdf.addPage();
+                const sy = i * pdfPageH;
+                const sliceH = Math.min(pdfPageH, imgH - sy);
+                const pageCanvas = document.createElement('canvas');
+                pageCanvas.width = imgW;
+                pageCanvas.height = sliceH;
+                pageCanvas.getContext('2d').drawImage(canvas, 0, sy, imgW, sliceH, 0, 0, imgW, sliceH);
+                const pageImg = pageCanvas.toDataURL('image/jpeg', 0.97);
+                pdf.addImage(pageImg, 'JPEG', 0, 0, imgW / 2, sliceH / 2);
+            }
+
+            pdf.save(`${baseName}.pdf`);
+        } finally {
+            document.body.removeChild(wrapper);
         }
     }
 
@@ -950,11 +938,18 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
                 return;
             }
             const outputName = `${currentResumeData?.name || 'resume'}.pdf`;
+            const btnText = downloadCvBtn.querySelector('.btn-text') || downloadCvBtn;
+            const originalLabel = btnText.textContent;
+            btnText.textContent = 'جاري إنشاء PDF...';
+            downloadCvBtn.disabled = true;
             try {
-                exportAsPdf(improvedCvText, outputName);
+                await exportAsPdf(improvedCvText, outputName);
                 showToast('تم تحميل السيرة الذاتية المحسّنة كملف PDF.');
             } catch (error) {
                 showToast('تعذر إنشاء الملف. يمكنك نسخ النص المحسّن يدويًا.', 'error');
+            } finally {
+                btnText.textContent = originalLabel;
+                downloadCvBtn.disabled = false;
             }
         });
     }
