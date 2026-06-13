@@ -681,6 +681,21 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 
         const baseName = originalName.replace(/\.(pdf|html|docx|doc)$/i, '');
 
+        function buildContactHtml(contactStr) {
+            return contactStr.split(' | ').map(part => {
+                const trimmed = part.trim();
+                if (/^[\w.+-]+@[\w-]+\.[a-z]{2,}$/i.test(trimmed)) {
+                    return `<a href="mailto:${trimmed}" style="color:#111827;text-decoration:none;">${trimmed}</a>`;
+                }
+                if (/linkedin/i.test(trimmed)) {
+                    const url = trimmed.replace(/^LinkedIn:\s*/i, '').trim();
+                    const href = url.startsWith('http') ? url : `https://${url}`;
+                    return `<a href="${href}" target="_blank" style="color:#111827;text-decoration:none;">${trimmed}</a>`;
+                }
+                return esc(trimmed);
+            }).join(' <span style="color:#9ca3af;">|</span> ');
+        }
+
         const html = `<!DOCTYPE html>
 <html lang="${isAr ? 'ar' : 'en'}" dir="${dir}">
 <head>
@@ -727,7 +742,7 @@ ${jobDetails ? '- راجع الوصف الوظيفي المدخل واستخرج
 <div class="page">
   <div class="name">${esc(data.name)}</div>
   <div class="role">${esc(data.role)}</div>
-  <div class="contact">${esc(data.contact)}</div>
+  <div class="contact">${buildContactHtml(data.contact)}</div>
   ${sectionsHtml}
 </div>
 <script>
