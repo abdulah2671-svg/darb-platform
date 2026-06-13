@@ -11,7 +11,7 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=49">
+    <link rel="stylesheet" href="style.css?v=50">
 </head>
 <body>
     <div class="app-container">
@@ -89,51 +89,139 @@
                                 <span class="badge badge-primary">خطوة 1</span>
                             </div>
                             <div class="card-body">
+
+                                <!-- Step 1: Job Title -->
                                 <div class="form-group">
-                                    <label for="target-job-title">المسمى الوظيفي المستهدف</label>
+                                    <label for="target-job-title"><i class="fa-solid fa-crosshairs text-primary"></i> المسمى الوظيفي المستهدف <span class="text-danger">*</span></label>
                                     <div class="input-icon-wrapper">
                                         <i class="fa-solid fa-id-badge input-icon"></i>
-                                        <input type="text" id="target-job-title" class="form-control" placeholder="مثال: محلل بيانات، مطور واجهات، أخصائي موارد بشرية">
+                                        <input type="text" id="target-job-title" class="form-control" placeholder="مثال: Network Engineer, IT Support Specialist, Cloud Administrator">
                                     </div>
                                 </div>
+
+                                <!-- Step 2: Personal Info -->
                                 <div class="form-group user-survey">
-                                    <label>استبيان معلومات المستخدم لإضافتها في السيرة</label>
-                                    <div class="survey-language-toggle" role="group" aria-label="اختيار لغة الاستبيان">
-                                        <button type="button" class="survey-lang-btn active" data-survey-lang="en">English</button>
-                                        <button type="button" class="survey-lang-btn" data-survey-lang="ar">عربي</button>
+                                    <div class="survey-section-header">
+                                        <i class="fa-solid fa-user-circle text-primary"></i>
+                                        <span>المعلومات الشخصية</span>
+                                        <div class="survey-language-toggle" role="group">
+                                            <button type="button" class="survey-lang-btn active" data-survey-lang="en">English</button>
+                                            <button type="button" class="survey-lang-btn" data-survey-lang="ar">عربي</button>
+                                        </div>
                                     </div>
                                     <div class="survey-grid">
-                                        <input type="text" id="user-full-name" class="form-control" placeholder="الاسم الكامل">
-                                        <input type="email" id="user-email" class="form-control" placeholder="البريد الإلكتروني">
-                                        <input type="tel" id="user-phone" class="form-control" placeholder="رقم الجوال">
-                                        <input type="text" id="user-region" class="form-control" placeholder="المنطقة / المدينة">
-                                        <input type="text" id="user-college" class="form-control" placeholder="اسم الكلية أو الجامعة">
-                                        <input type="text" id="user-major" class="form-control" placeholder="التخصص">
-                                        <input type="text" id="user-gpa" class="form-control" placeholder="المعدل GPA">
-                                        <input type="url" id="user-linkedin" class="form-control" placeholder="حساب LinkedIn">
-                                    </div>
-                                    <div class="textarea-wrapper mt-3">
-                                        <textarea id="cv-career-objective" placeholder="Career Objective - الهدف الوظيفي الذي تريد إضافته أو تحسينه"></textarea>
-                                    </div>
-                                    <div class="textarea-wrapper mt-3">
-                                        <textarea id="cv-education" placeholder="Education - التعليم، الكلية، التخصص، المعدل، سنة التخرج"></textarea>
-                                    </div>
-                                    <div class="textarea-wrapper mt-3">
-                                        <textarea id="user-experience" placeholder="Experiences - الخبرات العملية أو التدريبية، كل خبرة في سطر مستقل"></textarea>
-                                    </div>
-                                    <div class="textarea-wrapper mt-3">
-                                        <textarea id="user-courses" placeholder="Courses - الدورات والشهادات، كل دورة في سطر مستقل"></textarea>
-                                    </div>
-                                    <div class="textarea-wrapper mt-3">
-                                        <textarea id="user-skills" placeholder="Skills - المهارات التقنية والشخصية، كل مهارة في سطر مستقل"></textarea>
-                                    </div>
-                                    <div class="textarea-wrapper mt-3">
-                                        <textarea id="cv-languages" placeholder="Languages - اللغات مثل: Arabic: Native / English: Intermediate"></textarea>
-                                    </div>
-                                    <div class="textarea-wrapper mt-3">
-                                        <textarea id="cv-reference" placeholder="Reference - المراجع، مثال: Available upon request أو اسم المرجع وبياناته"></textarea>
+                                        <div class="survey-field">
+                                            <label class="field-label">الاسم الكامل</label>
+                                            <input type="text" id="user-full-name" class="form-control" placeholder="MOHAMMED AL-AHMADI">
+                                        </div>
+                                        <div class="survey-field">
+                                            <label class="field-label">البريد الإلكتروني</label>
+                                            <input type="email" id="user-email" class="form-control" placeholder="email@example.com">
+                                        </div>
+                                        <div class="survey-field">
+                                            <label class="field-label">رقم الجوال</label>
+                                            <input type="tel" id="user-phone" class="form-control" placeholder="+966 5X XXX XXXX">
+                                        </div>
+                                        <div class="survey-field">
+                                            <label class="field-label">المدينة / المنطقة</label>
+                                            <input type="text" id="user-region" class="form-control" placeholder="Riyadh, Saudi Arabia">
+                                        </div>
+                                        <div class="survey-field">
+                                            <label class="field-label">المؤسسة التعليمية</label>
+                                            <input type="text" id="user-college" class="form-control" placeholder="TVTC / KAU / KFUPM">
+                                        </div>
+                                        <div class="survey-field">
+                                            <label class="field-label">التخصص</label>
+                                            <input type="text" id="user-major" class="form-control" placeholder="Computer Networks / Cybersecurity">
+                                        </div>
+                                        <div class="survey-field">
+                                            <label class="field-label">المعدل وسنة التخرج</label>
+                                            <input type="text" id="user-gpa" class="form-control" placeholder="4.75 / 5.00 — 2025">
+                                        </div>
+                                        <div class="survey-field">
+                                            <label class="field-label">رابط LinkedIn</label>
+                                            <input type="url" id="user-linkedin" class="form-control" placeholder="linkedin.com/in/username">
+                                        </div>
                                     </div>
                                 </div>
+
+                                <!-- Step 3: Career Objective -->
+                                <div class="form-group">
+                                    <label class="survey-section-header">
+                                        <i class="fa-solid fa-bullseye text-primary"></i>
+                                        <span>الهدف الوظيفي <span class="field-hint">(اكتب بصيغة جملة كاملة)</span></span>
+                                    </label>
+                                    <div class="textarea-wrapper">
+                                        <textarea id="cv-career-objective" rows="3" placeholder="مثال: Recent Computer Network Engineering graduate seeking an entry-level position in networking and IT infrastructure. Passionate about network administration, troubleshooting, and continuous learning."></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Step 4: Education -->
+                                <div class="form-group">
+                                    <label class="survey-section-header">
+                                        <i class="fa-solid fa-graduation-cap text-primary"></i>
+                                        <span>التعليم <span class="field-hint">(كل سطر = عنصر مستقل)</span></span>
+                                    </label>
+                                    <div class="textarea-wrapper">
+                                        <textarea id="cv-education" rows="4" placeholder="Diploma in Computer Network Engineering&#10;TVTC — Riyadh&#10;GPA: 4.67 / 5.00&#10;Graduated: 2025"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Step 5: Experience -->
+                                <div class="form-group">
+                                    <label class="survey-section-header">
+                                        <i class="fa-solid fa-briefcase text-primary"></i>
+                                        <span>الخبرات <span class="field-hint">(كل خبرة في سطر مستقل)</span></span>
+                                    </label>
+                                    <div class="textarea-wrapper">
+                                        <textarea id="user-experience" rows="4" placeholder="Cooperative Training — IT Department, Saudi Aramco&#10;Network Support Intern — ABC Technology Solutions&#10;Volunteer IT Support Technician — Community Event"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Step 6: Courses -->
+                                <div class="form-group">
+                                    <label class="survey-section-header">
+                                        <i class="fa-solid fa-certificate text-primary"></i>
+                                        <span>الدورات والشهادات <span class="field-hint">(كل دورة في سطر مستقل)</span></span>
+                                    </label>
+                                    <div class="textarea-wrapper">
+                                        <textarea id="user-courses" rows="4" placeholder="CCNA: Introduction to Networks&#10;CCNA: Switching, Routing and Wireless Essentials&#10;Network Security Fundamentals&#10;Microsoft Windows Administration"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Step 7: Skills -->
+                                <div class="form-group">
+                                    <label class="survey-section-header">
+                                        <i class="fa-solid fa-code text-primary"></i>
+                                        <span>المهارات التقنية <span class="field-hint">(كل مهارة في سطر مستقل)</span></span>
+                                    </label>
+                                    <div class="textarea-wrapper">
+                                        <textarea id="user-skills" rows="5" placeholder="Network Troubleshooting&#10;TCP/IP Routing and Switching&#10;Cisco IOS&#10;Windows Administration&#10;Active Directory&#10;Technical Support"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Step 8: Languages -->
+                                <div class="form-group">
+                                    <label class="survey-section-header">
+                                        <i class="fa-solid fa-language text-primary"></i>
+                                        <span>اللغات <span class="field-hint">(كل لغة في سطر مستقل)</span></span>
+                                    </label>
+                                    <div class="textarea-wrapper">
+                                        <textarea id="cv-languages" rows="2" placeholder="Arabic: Native&#10;English: Upper Intermediate"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Step 9: Reference -->
+                                <div class="form-group">
+                                    <label class="survey-section-header">
+                                        <i class="fa-solid fa-address-card text-primary"></i>
+                                        <span>المراجع</span>
+                                    </label>
+                                    <div class="textarea-wrapper">
+                                        <textarea id="cv-reference" rows="2" placeholder="Available upon request"></textarea>
+                                    </div>
+                                </div>
+
                                 <button class="btn btn-primary btn-block btn-lg mt-4 shadow-sm group" id="generate-cv-btn">
                                     <span class="btn-text">تحسين ملف السيرة بالخوارزمية</span>
                                     <i class="fa-solid fa-wand-magic-sparkles group-hover-animate"></i>
@@ -317,6 +405,6 @@
     <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
-    <script src="script.js?v=49"></script>
+    <script src="script.js?v=50"></script>
 </body>
 </html>
